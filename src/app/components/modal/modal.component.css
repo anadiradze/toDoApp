@@ -10,7 +10,7 @@
     align-items: center;
 }
 
-.pop-up {
+.modal {
     background-color: #fff;
     padding: 20px;
     width: 500px;
@@ -27,7 +27,7 @@ input {
     margin-bottom: 10px;
 }
 
-.pop-up-buttons {
+.modal-buttons {
     display: flex;
     justify-content: flex-end;
 }

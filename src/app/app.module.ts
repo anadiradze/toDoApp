@@ -9,7 +9,7 @@ import { FinishedTasksComponent } from './components/finished-tasks/finished-tas
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListContainerComponent } from './components/shared/list-container/list-container.component';
 import { ListItemComponent } from './components/shared/list-item/list-item.component';
-import { PopUpComponent } from './components/pop-up/pop-up.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { PopUpComponent } from './components/pop-up/pop-up.component';
     DashboardComponent,
     ListContainerComponent,
     ListItemComponent,
-    PopUpComponent
+    ModalComponent
   ],
   imports: [
     BrowserModule,
