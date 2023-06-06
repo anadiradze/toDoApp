@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-modal',
@@ -9,6 +10,8 @@ import { ModalServiceService } from 'src/app/services/modal-service.service';
 export class ModalComponent {
   constructor(private modalService: ModalServiceService) { }
   closedByBackdropClick = false
+
+  taskNameControl: FormControl = new FormControl('');
 
   addTask() {
     this.modalService.closeModal()

@@ -1,7 +1,7 @@
 <div class="backdrop" (click)="onBackdropClick()">
     <div class="modal" (click)="onModalClick($event)">
       <h2>Add Task</h2>
-      <input type="text" placeholder="Enter task name" />
+      <input type="text" placeholder="Enter task name" [formControl]="taskNameControl" />
       <div class="modal-buttons">
         <button (click)="addTask()">Add Task</button>
         <button (click)="cancel()">Cancel</button>
