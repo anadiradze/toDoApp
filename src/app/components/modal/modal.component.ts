@@ -8,10 +8,18 @@ import { ModalServiceService } from 'src/app/services/modal-service.service';
 })
 export class ModalComponent {
   constructor(private modalService: ModalServiceService) { }
+  closedByBackdropClick = false
+
   addTask() {
     this.modalService.closeModal()
   }
   cancel() {
     this.modalService.closeModal()
+  }
+  onBackdropClick() {
+    this.modalService.closeModal()
+  }
+  onModalClick(event: MouseEvent) {
+    event.stopPropagation();
   }
 }

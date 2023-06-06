@@ -2,7 +2,7 @@
 
     <button class="newTask" (click)="showModal()">+ New Task</button>
     <app-modal *ngIf="isModalServiceVisible()"></app-modal>
-
+    
     <div class="board-lists">
         <app-new-tasks></app-new-tasks>
         <app-in-progress-tasks></app-in-progress-tasks>

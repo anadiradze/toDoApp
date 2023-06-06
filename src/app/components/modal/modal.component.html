@@ -1,5 +1,5 @@
-<div class="backdrop">
-    <div class="modal">
+<div class="backdrop" (click)="onBackdropClick()">
+    <div class="modal" (click)="onModalClick($event)">
       <h2>Add Task</h2>
       <input type="text" placeholder="Enter task name" />
       <div class="modal-buttons">
