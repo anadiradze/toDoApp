@@ -1,0 +1,18 @@
+
+.board-lists-frame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px
+}
+.board-lists {
+    display: grid;
+    grid-auto-columns: 300px;
+    grid-auto-flow: column;
+    grid-gap: 10px;
+}
+
+
+
+
+
