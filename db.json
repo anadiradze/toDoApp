@@ -1,0 +1,7 @@
+{
+  "tasks": [
+    { "id": 1, "title": "Task 1", "status": "new" },
+    { "id": 2, "title": "Task 2", "status": "inProgress" },
+    { "id": 3, "title": "Task 3", "status": "done" }
+  		]
+}
