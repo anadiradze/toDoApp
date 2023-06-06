@@ -9,6 +9,7 @@ import { FinishedTasksComponent } from './components/finished-tasks/finished-tas
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ListContainerComponent } from './components/shared/list-container/list-container.component';
 import { ListItemComponent } from './components/shared/list-item/list-item.component';
+import { PopUpComponent } from './components/pop-up/pop-up.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ListItemComponent } from './components/shared/list-item/list-item.compo
     FinishedTasksComponent,
     DashboardComponent,
     ListContainerComponent,
-    ListItemComponent
+    ListItemComponent,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,
