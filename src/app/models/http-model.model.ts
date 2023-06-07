@@ -4,6 +4,3 @@ export interface ITask {
     id?: number;
 }
 
-export interface ITaskList {
-    tasks: ITask[];
-  }

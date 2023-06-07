@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ITask } from 'src/app/models/http-model.model';
+import { HttpServiceService } from 'src/app/services/http-service.service';
 
 @Component({
   selector: 'app-in-progress-tasks',
   templateUrl: './in-progress-tasks.component.html',
   styleUrls: ['./in-progress-tasks.component.css']
 })
-export class InProgressTasksComponent {
-
+export class InProgressTasksComponent implements OnInit{
+  constructor(private httpService: HttpServiceService) { }
+  inProgressTasks: ITask[] = []
+  ngOnInit(): void {
+    this.httpService.getTasks('inProgress').subscribe(
+      (taskList: ITask[]) => {
+        this.inProgressTasks = taskList
+      }
+    )
+  }
 }

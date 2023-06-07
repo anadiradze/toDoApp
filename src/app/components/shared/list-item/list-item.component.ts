@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ITask } from 'src/app/models/http-model.model';
 
 @Component({
   selector: 'app-list-item',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./list-item.component.css']
 })
 export class ListItemComponent {
-
+  @Input() taskItems: ITask[] = []
 }
