@@ -6,6 +6,7 @@ import { ITask, ITaskList } from '../models/http-model.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class HttpServiceService {
 
   constructor(private http: HttpClient) { }

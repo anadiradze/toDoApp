@@ -1,7 +1,7 @@
 export interface ITask {
-    id: number;
     title: string;
     status: string;
+    id?: number;
 }
 
 export interface ITaskList {
