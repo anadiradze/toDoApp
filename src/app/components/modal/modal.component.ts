@@ -21,7 +21,7 @@ export class ModalComponent {
 
   addTask() {
     const task: ITask = { title: this.taskNameControl.value, status: "new" }
-    this.httpService.addTask(task).subscribe();
+    this.httpService.addTask(task).subscribe((res) => this.httpService.event.next(true));
     this.modalService.closeModal()
   }
   cancel() {

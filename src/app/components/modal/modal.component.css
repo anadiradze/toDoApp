@@ -8,6 +8,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+
 }
 
 .modal {
@@ -19,6 +21,7 @@
 
 h2 {
     margin-top: 0;
+    color: #526D82;
 }
 
 input {
@@ -40,11 +43,11 @@ button {
 }
 
 button:first-child {
-    background: #3C86F4;
+    background: #CD5D7D;
     color: #fff;
 }
 
 button:last-child {
     background-color: #fff;
-    color: #0053CF;
+    color: #CD5D7D;
 }

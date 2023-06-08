@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ITask } from '../models/http-model.model';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { ITask } from '../models/http-model.model';
 })
 
 export class HttpServiceService {
+  event: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor(private http: HttpClient) { }
   url = 'http://localhost:3004/'

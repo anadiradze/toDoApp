@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { switchMap } from 'rxjs';
 import { ITask } from 'src/app/models/http-model.model';
 import { HttpServiceService } from 'src/app/services/http-service.service';
 
@@ -12,7 +13,8 @@ export class NewTasksComponent {
   newTasks: ITask[] = []
 
   ngOnInit(): void {
-    this.httpService.getTasks('new').subscribe(
+    this.httpService.event.pipe(switchMap(() => this.httpService.getTasks('new')))
+    .subscribe(
       (taskList: ITask[]) => {
         this.newTasks = taskList
       }

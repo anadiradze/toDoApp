@@ -1,16 +1,22 @@
 .board-list {
-    background: rgba(60, 134, 244, 0.15);
-    border-radius: 3px;
-    display: grid;
-    grid-auto-rows: max-content;
-    grid-gap: 10px;
-    height: max-content;
-    padding: 10px;
-    color: #0053CF;
+    max-width: 350px;
+    max-height: 64vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px 20px 10px;
+    overflow: auto;
+    border-radius: 5px;
+    border: 7px solid #F3DFE3;
+    color: #27374D;
 }
 
 .list-title {
     font-weight: bold;
+    color: #526D82;
+    position: sticky;
+    top: 0;
+    background-color: #FCEAEA;
+    padding: 12px;
 }
 
 .add-card {

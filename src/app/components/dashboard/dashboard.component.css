@@ -1,11 +1,11 @@
-
-.board-lists-frame{
+.board-lists-frame {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 100px
+    height: 100%
 }
+
 .board-lists {
     display: grid;
     grid-auto-columns: 300px;
@@ -13,9 +13,30 @@
     grid-gap: 10px;
 }
 
-.newTask{
-    margin: 20px;
+.newTask {
+    width: 140px;
+    height: 50px;
+    background-color: #CD5D7D;
+    border-radius: 12px;
+    border: none;
+    color: white;
+}
+h1{
+    font-size: 40px;
+    color: #526D82
+}
+.inputAndButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 20px;
 }
 
-
+.searchInput {
+    width: 752.85px;
+    height: 50px;
+    border: 1px solid #D2D2D2;
+    border-radius: 12px;
+}
 
