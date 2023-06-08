@@ -1,12 +1,17 @@
+.card-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap:0
+}
 .card {
     background-color: white;
     border-radius: 3px;
     box-shadow: 0 1px 0 rgba(9, 30, 66, .25);
     border: #9DB2BF 1px solid;
-    padding: 10px;
-    margin: 10px;
-    color: #526D82;
+    padding: 0 10px;
+    margin: 10px 10px 0px 10px;
     width: 220px;
+    color: #526D82;
     overflow: auto;
-    
+    border-bottom: none;
 }

@@ -1,3 +1,12 @@
-<div class="card" *ngFor="let taskItem of taskItems">
-    <p>{{taskItem.title}} </p>
+<!-- <div *ngIf="(taskItems | async) as items">-->
+<!--  <div class="card-wrapper" *ngFor="let taskItem of items">
+ -->
+<div class="card-wrapper" *ngFor="let taskItem of taskItems">
+    <div class="card">
+        <p>{{taskItem.title}} </p>
+    </div>
+    <ng-container *ngIf="taskItem.id && taskItem.status">
+        <app-icons-container [targetId]="taskItem.id" [targetStatus]="taskItem.status"></app-icons-container>
+    </ng-container>
 </div>
+<!-- </div> -->

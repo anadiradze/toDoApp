@@ -12,6 +12,7 @@ import { ListItemComponent } from './components/shared/list-item/list-item.compo
 import { ModalComponent } from './components/modal/modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { IconsContainerComponent } from './components/shared/icons-container/icons-container.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardComponent,
     ListContainerComponent,
     ListItemComponent,
-    ModalComponent
+    ModalComponent,
+    IconsContainerComponent
   ],
   imports: [
     BrowserModule,

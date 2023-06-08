@@ -10,14 +10,21 @@ import { HttpServiceService } from 'src/app/services/http-service.service';
 })
 export class NewTasksComponent {
   constructor(private httpService: HttpServiceService) { }
+
+  /*
+    newTasks: any
+   ngOnInit(): void {
+      this.newTasks = this.httpService.event.pipe(switchMap(() => this.httpService.getTasks('new')))
+    } */
+    
   newTasks: ITask[] = []
 
   ngOnInit(): void {
     this.httpService.event.pipe(switchMap(() => this.httpService.getTasks('new')))
-    .subscribe(
-      (taskList: ITask[]) => {
-        this.newTasks = taskList
-      }
-    )
+      .subscribe(
+        (taskList: ITask[]) => {
+          this.newTasks = taskList
+        }
+      )
   }
 }
