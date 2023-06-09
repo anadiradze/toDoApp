@@ -8,7 +8,6 @@ import { ITask } from 'src/app/models/http-model.model';
   styleUrls: ['./list-item.component.css']
 })
 export class ListItemComponent {
- // @Input() taskItems!: Observable<any[]>;
   @Input() taskItems: ITask[] = []
 
 }

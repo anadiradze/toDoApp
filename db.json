@@ -1,82 +1,87 @@
 {
   "new": [
     {
-      "title": "Ano",
+      "title": "Task 1 - new",
+      "status": "new",
+      "id": 1
+    },
+    {
+      "title": "Task 2  - new",
+      "status": "new",
+      "id": 2
+    },
+    {
+      "title": "Task 2  - new",
+      "status": "new",
+      "id": 3
+    },
+    {
+      "title": "Task 4  - new",
       "status": "new",
       "id": 4
     },
     {
-      "title": "Ano",
+      "title": "Task 5  - new",
       "status": "new",
       "id": 5
     },
     {
-      "title": "Ano",
+      "title": "Task 6  - new",
       "status": "new",
       "id": 6
     },
     {
-      "title": "Ano",
+      "title": "Task 7  - new",
       "status": "new",
       "id": 7
     },
     {
-      "title": "Ano",
+      "title": "Task 8  - new",
       "status": "new",
       "id": 8
     },
     {
-      "title": "Ano",
+      "title": "Task 9  - new",
       "status": "new",
       "id": 9
-    },
-    {
-      "title": "Ano",
-      "status": "new",
-      "id": 10
-    },
-    {
-      "title": "Ano",
-      "status": "new",
-      "id": 11
-    },
-    {
-      "title": "Ano",
-      "status": "new",
-      "id": 12
     }
   ],
   "inProgress": [
     {
-      "id": 1,
-      "title": "Task 1",
-      "status": "inProgress"
+      "title": "Task 1 - inProgress",
+      "status": "inProgress",
+      "id": 1
     },
     {
       "id": 2,
-      "title": "Task 2",
+      "title": "Task 2 - inProgress",
       "status": "inProgress"
+    },
+    {
+      "id": 3,
+      "title": "Task 3 - inProgress",
+      "status": "inProgress"
+    },
+    {
+      "title": "Task 1 - inProgress",
+      "status": "inProgress",
+      "id": 4
     }
   ],
   "done": [
     {
       "id": 1,
-      "title": "Task 1",
+      "title": "Task 1 - done",
       "status": "done"
     },
     {
       "id": 2,
-      "title": "Task 1",
+      "title": "Task 2 - done",
       "status": "done"
     },
     {
       "id": 3,
-      "title": "Task 1",
-      "status": "done"
-    },
-    {
-      "id": 4,
-      "title": "Task 1",
+      "title": "Task 3 - done",
       "status": "done"
     }
   ]

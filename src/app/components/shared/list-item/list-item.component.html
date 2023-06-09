@@ -6,7 +6,7 @@
         <p>{{taskItem.title}} </p>
     </div>
     <ng-container *ngIf="taskItem.id && taskItem.status">
-        <app-icons-container [targetId]="taskItem.id" [targetStatus]="taskItem.status"></app-icons-container>
+        <app-icons-container [targetItem]="taskItem"></app-icons-container>
     </ng-container>
 </div>
 <!-- </div> -->
