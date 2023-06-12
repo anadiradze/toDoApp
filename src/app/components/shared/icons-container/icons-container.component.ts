@@ -24,7 +24,6 @@ export class IconsContainerComponent implements OnInit {
   deleteTask(id: number, status: TaskStatus) {
     this.httpService.deleteTask(id, status).subscribe((res) => {
       this.httpService.event.next(true)
-      console.log
     })
   }
 
