@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { switchMap } from 'rxjs';
-import { ITask, TaskStatus } from 'src/app/models/http-model.model';
+import { filter, switchMap, throwError } from 'rxjs';
+import { Endpoints, ITask } from 'src/app/models/http-model.model';
 import { HttpServiceService } from 'src/app/services/http-service.service';
 import { RotationServiceService } from 'src/app/services/rotation-service.service';
 
@@ -22,15 +22,18 @@ export class NewTasksComponent {
   newTasks: ITask[] = []
 
   ngOnInit(): void {
-    this.httpService.event.pipe(switchMap(() => this.httpService.getTasks(TaskStatus.New))).subscribe(
-      (taskList: ITask[]) => {
-        this.newTasks = taskList
-        this.httpService.updateTask(TaskStatus.InProgress,{...this.newTasks[0], status: TaskStatus.New}).subscribe( ()=>{
-          console.log(
-            {...this.newTasks[0]},"...this.newTasks[0]"
-          )
-        })
-      }
-    )
+    this.httpService.event.pipe(
+      filter((res: any) => res === Endpoints.New || res === Endpoints.Default), 
+      switchMap((res) => {
+        if (res) {
+          console.log('getTasks called')
+          return this.httpService.getTasks(Endpoints.New)
+        }
+        return throwError(() => new Error(''))
+      })).subscribe(
+        (taskList: ITask[]) => {
+          this.newTasks = taskList
+        }
+      )
   }
 }

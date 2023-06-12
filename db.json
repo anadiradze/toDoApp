@@ -1,16 +1,6 @@
 {
   "new": [
     {
-      "title": "Task 1 - new",
-      "status": "new",
-      "id": 1
-    },
-    {
-      "title": "Task 2  - new",
-      "status": "new",
-      "id": 2
-    },
-    {
       "title": "Task 2  - new",
       "status": "new",
       "id": 3
@@ -66,6 +56,16 @@
       "title": "Task 1 - inProgress",
       "status": "inProgress",
       "id": 4
+    },
+    {
+      "title": "Task 1 - new",
+      "status": "inProgress",
+      "id": 5
+    },
+    {
+      "title": "Task 2  - new",
+      "status": "inProgress",
+      "id": 6
     }
   ],
   "done": [

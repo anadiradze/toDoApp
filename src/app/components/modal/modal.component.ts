@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
 import { HttpServiceService } from 'src/app/services/http-service.service';
 import { FormControl } from '@angular/forms';
-import { ITask, TaskStatus } from 'src/app/models/http-model.model';
+import { Endpoints, ITask, } from 'src/app/models/http-model.model';
 
 
 @Component({
@@ -20,8 +20,10 @@ export class ModalComponent {
 
 
   addTask() {
-    const task: ITask = { title: this.taskNameControl.value, status: TaskStatus.Done }
-    this.httpService.addTask(task).subscribe((res) => this.httpService.event.next(true));
+    const task: ITask = { title: this.taskNameControl.value, status: Endpoints.New }
+    this.httpService.addTask(task).subscribe((res) => {
+       this.httpService.event.next(Endpoints.New);
+    });
     this.modalService.closeModal()
   }
   cancel() {

@@ -1,11 +1,13 @@
 export interface ITask {
     title: string;
-    status: TaskStatus;
+    status: Endpoints;
     id?: number;
 }
 
-export enum TaskStatus {
+
+export enum Endpoints{
+    Default ='default',
     New = 'new',
     InProgress = 'inProgress',
     Done = 'done'
-  }
+}

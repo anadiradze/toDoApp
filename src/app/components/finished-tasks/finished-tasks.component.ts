@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { switchMap } from 'rxjs';
-import { ITask, TaskStatus } from 'src/app/models/http-model.model';
+import { filter, switchMap, throwError } from 'rxjs';
+import { Endpoints, ITask } from 'src/app/models/http-model.model';
 import { HttpServiceService } from 'src/app/services/http-service.service';
 
 @Component({
@@ -14,11 +14,15 @@ export class FinishedTasksComponent {
   finishedTasks: ITask[] = []
 
   ngOnInit(): void {
-    this.httpService.event.pipe(switchMap(() => this.httpService.getTasks(TaskStatus.Done))).
-      subscribe(
-        (taskList: ITask[]) => {
-          this.finishedTasks = taskList
-        }
-      )
+    this.httpService.event.pipe(filter((res: any) => res === Endpoints.Done || res === Endpoints.Default), switchMap((res) => {
+      if (res) {
+        return this.httpService.getTasks(Endpoints.Done)
+      }
+      return throwError(() => new Error(''))
+    })).subscribe(
+      (taskList: ITask[]) => {
+        this.finishedTasks = taskList
+      }
+    )
   }
 }
