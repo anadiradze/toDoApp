@@ -1,7 +1,17 @@
 {
   "new": [
     {
+      "title": "Task 1  - new",
+      "status": "new",
+      "id": 1
+    },
+    {
       "title": "Task 2  - new",
+      "status": "new",
+      "id": 2
+    },
+    {
+      "title": "Task 3  - new",
       "status": "new",
       "id": 3
     },
@@ -53,17 +63,17 @@
       "status": "inProgress"
     },
     {
-      "title": "Task 1 - inProgress",
+      "title": "Task 4 - inProgress",
       "status": "inProgress",
       "id": 4
     },
     {
-      "title": "Task 1 - new",
+      "title": "Task 5 - inProgress",
       "status": "inProgress",
       "id": 5
     },
     {
-      "title": "Task 2  - new",
+      "title": "Task 6  - inProgress",
       "status": "inProgress",
       "id": 6
     }

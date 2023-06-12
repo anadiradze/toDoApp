@@ -31,6 +31,12 @@ export class IconsContainerComponent implements OnInit {
   moveToInProgress() {
     this.rotationService.changeStatus(this.targetItem, Endpoints.InProgress)
   }
+  moveToDone() {
+    this.rotationService.changeStatus(this.targetItem, Endpoints.Done)
+  }
+  moveToNew(){
+    this.rotationService.changeStatus(this.targetItem, Endpoints.New)
+  }
 }
 
 
