@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, concatMap, tap } from 'rxjs';
+import { concatMap, tap } from 'rxjs';
 import { HttpServiceService } from './http-service.service';
 import { Endpoints, ITask } from '../models/http-model.model';
 

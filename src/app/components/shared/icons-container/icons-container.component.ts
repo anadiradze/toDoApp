@@ -13,6 +13,11 @@ export class IconsContainerComponent implements OnInit {
   targetId?: number
   targetStatus?: Endpoints
 
+  newStatusEnum:Endpoints =Endpoints.New
+  inProgressStatusEnum:Endpoints =Endpoints.InProgress
+  doneStatusEnum:Endpoints =Endpoints.Done
+
+
   constructor(
     private httpService: HttpServiceService,
     private rotationService: RotationServiceService
@@ -29,13 +34,16 @@ export class IconsContainerComponent implements OnInit {
   }
 
   moveToInProgress() {
-    this.rotationService.changeStatus(this.targetItem, Endpoints.InProgress)
+    this.rotationService.changeStatus(this.targetItem, this.inProgressStatusEnum)
   }
   moveToDone() {
-    this.rotationService.changeStatus(this.targetItem, Endpoints.Done)
+    this.rotationService.changeStatus(this.targetItem, this.doneStatusEnum)
   }
   moveToNew(){
-    this.rotationService.changeStatus(this.targetItem, Endpoints.New)
+    this.rotationService.changeStatus(this.targetItem, this.newStatusEnum)
+  }
+  log(){
+    console.log(this.targetItem.status)
   }
 }
 
