@@ -8,20 +8,21 @@ import { RotationServiceService } from 'src/app/services/rotation-service.servic
   templateUrl: './icons-container.component.html',
   styleUrls: ['./icons-container.component.css']
 })
+
 export class IconsContainerComponent implements OnInit {
   @Input() targetItem!: ITask
   targetId?: number
   targetStatus?: Endpoints
 
-  newStatusEnum:Endpoints =Endpoints.New
-  inProgressStatusEnum:Endpoints =Endpoints.InProgress
-  doneStatusEnum:Endpoints =Endpoints.Done
-
+  newStatusEnum = this.rotationService.newStatusEnum
+  inProgressStatusEnum = this.rotationService.inProgressStatusEnum
+  doneStatusEnum = this.rotationService.doneStatusEnum
 
   constructor(
     private httpService: HttpServiceService,
     private rotationService: RotationServiceService
   ) { }
+
   ngOnInit(): void {
     this.targetId = this.targetItem.id
     this.targetStatus = this.targetItem.status
@@ -29,22 +30,20 @@ export class IconsContainerComponent implements OnInit {
 
   deleteTask(id: number, status: Endpoints) {
     this.httpService.deleteTask(id, status).subscribe((res) => {
-       this.httpService.event.next(status);
+      this.httpService.event.next(status);
     })
   }
 
+  moveToNew() {
+    this.rotationService.changeStatus(this.targetItem, this.newStatusEnum)
+  }
   moveToInProgress() {
     this.rotationService.changeStatus(this.targetItem, this.inProgressStatusEnum)
   }
   moveToDone() {
     this.rotationService.changeStatus(this.targetItem, this.doneStatusEnum)
   }
-  moveToNew(){
-    this.rotationService.changeStatus(this.targetItem, this.newStatusEnum)
-  }
-  log(){
-    console.log(this.targetItem.status)
-  }
+
 }
 
 

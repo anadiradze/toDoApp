@@ -20,10 +20,11 @@ export class NewTasksComponent {
     } */
 
   newTasks: ITask[] = []
-
+  title = this.rotationService.newStatusEnum
+  
   ngOnInit(): void {
     this.httpService.event.pipe(
-      filter((res: any) => res === Endpoints.New || res === Endpoints.Default), 
+      filter((res: any) => res === Endpoints.New || res === Endpoints.Default),
       switchMap((res) => {
         if (res) {
           console.log('getTasks called')

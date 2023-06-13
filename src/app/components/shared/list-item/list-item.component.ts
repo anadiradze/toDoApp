@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 //import { Observable } from 'rxjs';
-import { ITask } from 'src/app/models/http-model.model';
+import { Endpoints, ITask } from 'src/app/models/http-model.model';
 
 @Component({
   selector: 'app-list-item',
@@ -9,5 +9,4 @@ import { ITask } from 'src/app/models/http-model.model';
 })
 export class ListItemComponent {
   @Input() taskItems: ITask[] = []
-
 }

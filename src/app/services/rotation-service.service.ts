@@ -11,7 +11,14 @@ export class RotationServiceService {
   constructor(
     private httpService: HttpServiceService
   ){}
-  
+
+
+  DefaultStatusEnum: Endpoints= Endpoints.Default
+  newStatusEnum: Endpoints = Endpoints.New
+  inProgressStatusEnum: Endpoints = Endpoints.InProgress
+  doneStatusEnum: Endpoints = Endpoints.Done
+
+
   changeStatus(targetTask: ITask, newStatus: Endpoints) {
     this.httpService.deleteTask(targetTask.id!, targetTask.status).pipe(
       tap(() => this.httpService.event.next(targetTask.status)

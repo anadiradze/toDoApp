@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Endpoints, ITask } from 'src/app/models/http-model.model';
+import { RotationServiceService } from 'src/app/services/rotation-service.service';
 
 @Component({
   selector: 'app-list-container',
@@ -6,5 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./list-container.component.css']
 })
 export class ListContainerComponent {
+  constructor(
+    private rotationService: RotationServiceService
+  ) { }
+  @Input() listTitle!: Endpoints
+
+
 
 }
