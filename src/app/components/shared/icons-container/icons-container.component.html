@@ -1,9 +1,9 @@
-<div class="icons-container" *ngIf="targetId && targetStatus && targetItem">
+<div class="icons-container" *ngIf="targetItem && targetItem.id && targetItem.status">
     <img class="icon" src="assets/new.png" alt="moveTonew" (click)="moveToNew()"
-        [ngClass]="{ 'display-none': targetStatus === newStatusEnum }">
+        [ngClass]="{ 'display-none': targetItem.status === newStatusEnum }">
     <img class="icon" src="assets/in-progress.png" alt="moveToInProgress" (click)="moveToInProgress()"
-        [ngClass]="{ 'display-none': targetStatus === inProgressStatusEnum }">
+        [ngClass]="{ 'display-none': targetItem.status === inProgressStatusEnum }">
     <img class="icon" src="assets/done.png" alt="moveToDone" (click)="moveToDone()"
-        [ngClass]="{ 'display-none': targetStatus === doneStatusEnum } ">
-    <img class="icon" src="assets/bin.png" alt="delete" (click)="deleteTask(targetId,targetStatus)">
+        [ngClass]="{ 'display-none': targetItem.status === doneStatusEnum } ">
+    <img class="icon" src="assets/bin.png" alt="delete" (click)="deleteTask(targetItem.id,targetItem.status)">
 </div>

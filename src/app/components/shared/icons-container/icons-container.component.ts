@@ -11,8 +11,7 @@ import { RotationServiceService } from 'src/app/services/rotation-service.servic
 
 export class IconsContainerComponent implements OnInit {
   @Input() targetItem!: ITask
-  targetId?: number
-  targetStatus?: Endpoints
+ 
 
   newStatusEnum = this.rotationService.newStatusEnum
   inProgressStatusEnum = this.rotationService.inProgressStatusEnum
@@ -24,8 +23,7 @@ export class IconsContainerComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.targetId = this.targetItem.id
-    this.targetStatus = this.targetItem.status
+
   }
 
   deleteTask(id: number, status: Endpoints) {
