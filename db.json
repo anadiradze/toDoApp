@@ -4,11 +4,13 @@
       "title": "Task 1  - new",
       "status": "new",
       "id": 1
-    }, {
+    },
+    {
       "title": "Task 2  - new",
       "status": "new",
       "id": 2
-    }, {
+    },
+    {
       "title": "Task 3  - new",
       "status": "new",
       "id": 3
@@ -37,11 +39,13 @@
       "title": "Task 8  - new",
       "status": "new",
       "id": 8
-    }, {
+    },
+    {
       "title": "Task 9  - new",
       "status": "new",
       "id": 9
-    }, {
+    },
+    {
       "title": "Task 10  - new",
       "status": "new",
       "id": 10
@@ -72,7 +76,7 @@
       "id": 15
     },
     {
-      "title": "Task   - inProgress",
+      "title": "Task 6 - inProgress",
       "status": "inProgress",
       "id": 16
     },

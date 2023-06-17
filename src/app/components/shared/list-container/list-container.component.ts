@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Endpoints, ITask } from 'src/app/models/http-model.model';
 import { RotationServiceService } from 'src/app/services/rotation-service.service';
 
@@ -7,11 +7,14 @@ import { RotationServiceService } from 'src/app/services/rotation-service.servic
   templateUrl: './list-container.component.html',
   styleUrls: ['./list-container.component.css']
 })
-export class ListContainerComponent {
+export class ListContainerComponent implements OnInit {
   constructor(
     private rotationService: RotationServiceService
-  ) { }
+  ) {}
   @Input() listTitle!: Endpoints
+  ngOnInit(): void {
+
+  }
 
 
 

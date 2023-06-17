@@ -11,7 +11,7 @@ import { Endpoints, ITask } from '../models/http-model.model';
 export class HttpServiceService {
   event: BehaviorSubject<Endpoints> = new BehaviorSubject<Endpoints>(Endpoints.Default);
   private refreshData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-   e: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  e: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   set refreshData(refreshStatus: boolean) {
     this.refreshData$.next(refreshStatus)
@@ -47,9 +47,15 @@ export class HttpServiceService {
     return this.http.delete<ITask>(`${this.url}/${id}`);
   }
 
-  updateTask(status: Endpoints, task: ITask): Observable<ITask> {
-    const url = `${this.url + status + '/' + task.id}`;
+  updateTask(task: ITask): Observable<ITask> {
+    const url = `${this.url + '/' + task.id}`;
     return this.http.put<ITask>(url, task);
+  }
+
+  changeStatus(task: ITask, newStatus: Endpoints): Observable<any> {
+    const url = `${this.url}/${task.id}`;
+    const updatedTask = { ...task, status: newStatus };
+    return this.http.put(url, updatedTask);
   }
 }
 

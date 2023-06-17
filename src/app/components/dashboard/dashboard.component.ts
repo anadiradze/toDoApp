@@ -24,6 +24,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTasks()
+    console.log("newTasks from dashboard ngOnInit", this.allTasks)
   }
 
   getTasks() {

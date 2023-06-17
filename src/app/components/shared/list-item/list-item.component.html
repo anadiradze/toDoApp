@@ -5,8 +5,35 @@
     <div class="card">
         <p>{{taskItem.title}} </p>
     </div>
-    <ng-container *ngIf="taskItem.id && taskItem.status">
-        <app-icons-container [targetItem]="taskItem"></app-icons-container>
-    </ng-container>
+    <div class="icons-container" *ngIf="taskItem && taskItem.id && taskItem.status">
+
+        <img 
+        class="icon" 
+        src="assets/new.png" 
+        alt="icon" 
+        (click)="changeTaskStatus(taskItem,newStatusEnum)"
+        [ngClass]="{ 'display-none': taskItem.status === newStatusEnum }">
+
+        <img 
+        class="icon" 
+        src="assets/in-progress.png" 
+        alt="icon"
+        (click)="changeTaskStatus(taskItem,inProgressStatusEnum)"
+        [ngClass]="{ 'display-none': taskItem.status === inProgressStatusEnum }">
+
+        <img 
+        class="icon" 
+        src="assets/done.png" 
+        alt="icon" 
+        (click)="changeTaskStatus(taskItem,doneStatusEnum)"
+        [ngClass]="{ 'display-none': taskItem.status === doneStatusEnum } ">
+        
+        <img 
+        class="icon" 
+        src="assets/bin.png" 
+        alt="icon" 
+        (click)="deleteTask(taskItem.id)">
+        
+    </div>
 </div>
 <!-- </div> -->
