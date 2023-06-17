@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { FormControl } from '@angular/forms';
-import { Endpoints, ITask } from 'src/app/models/http-model.model';
+import { Endpoints, ITask } from 'src/app/shared/models/http-model.model';
 
 @Component({
   selector: 'app-modal',

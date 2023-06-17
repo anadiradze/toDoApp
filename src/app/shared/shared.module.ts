@@ -3,12 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ListContainerComponent } from './components/list-container/list-container.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 
-// Import your shared components here
-;
-
 @NgModule({
   declarations: [
-    // List your shared components here
     ListContainerComponent,
     ListItemComponent
     
@@ -18,9 +14,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
   ],
   exports: [
     ListContainerComponent,
-    ListItemComponent
-    // Export the shared components to make them accessible to other modules
-   
+    ListItemComponent   
   ]
 })
 export class SharedModule { }
