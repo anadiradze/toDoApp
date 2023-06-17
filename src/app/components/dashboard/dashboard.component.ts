@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
   constructor(
     private modalService: ModalServiceService,
     private httpService: HttpServiceService,
-    private rotationService: RotationServiceService,
   ) { }
 
   allTasks: ITask[] = []
@@ -26,7 +25,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getTasks()
   }
-  
+
   getTasks() {
     this.httpService.isDataChanged$.pipe(
       switchMap(() => {
@@ -34,25 +33,12 @@ export class DashboardComponent implements OnInit {
       })
     ).subscribe({
       next: (AllTasksFromService: ITask[]) => {
-        this.allTasks = AllTasksFromService
-        this.initArrays()
+        this.newTasks = AllTasksFromService.filter((task) => { return task.status === Endpoints.New })
+        this.inProgressTasks = AllTasksFromService.filter((task) => { return task.status === Endpoints.InProgress })
+        this.doneTasks = AllTasksFromService.filter((task) => { return task.status === Endpoints.Done })
       }
     })
 
-  }
-  initArrays() {
-    this.allTasks.forEach((task) => {
-
-      if (task.status === Endpoints.New) {
-        this.newTasks = [...this.newTasks, task]
-      }
-      else if (task.status === Endpoints.InProgress) {
-        this.inProgressTasks = [...this.inProgressTasks, task]
-      }
-      else if (task.status === Endpoints.Done) {
-        this.doneTasks = [...this.doneTasks, task]
-      }
-    })
   }
   showModal() {
     this.modalService.openModal()

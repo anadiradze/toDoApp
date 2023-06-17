@@ -29,7 +29,6 @@ export class IconsContainerComponent implements OnInit {
   deleteTask(id: number) {
     this.httpService.deleteTask(id).subscribe((res) => {
      this.httpService.refreshData=true
-      console.log(id,'id')
     })
   }
 

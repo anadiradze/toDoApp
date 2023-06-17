@@ -11,6 +11,7 @@ import { Endpoints, ITask } from '../models/http-model.model';
 export class HttpServiceService {
   event: BehaviorSubject<Endpoints> = new BehaviorSubject<Endpoints>(Endpoints.Default);
   private refreshData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+   e: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
 
   set refreshData(refreshStatus: boolean) {
     this.refreshData$.next(refreshStatus)

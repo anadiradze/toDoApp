@@ -19,22 +19,22 @@ export class NewTasksComponent {
       this.newTasks = this.httpService.event.pipe(switchMap(() => this.httpService.getTasks('new')))
     } */
 
-  newTasks: ITask[] = []
-  title = this.rotationService.newStatusEnum
+  // newTasks: ITask[] = []
+  // title = this.rotationService.newStatusEnum
   
-  ngOnInit(): void {
-    this.httpService.event.pipe(
-     // filter((res: any) => res === Endpoints.New || res === Endpoints.Default),
-      switchMap((res) => {
-        if (res) {
-          console.log('getTasks called')
-         // return this.httpService.getTasks(Endpoints.New)
-        }
-        return throwError(() => new Error(''))
-      })).subscribe(
-        (taskList: ITask[]) => {
-          this.newTasks = taskList
-        }
-      )
-  }
+  // ngOnInit(): void {
+  //   this.httpService.event.pipe(
+  //    // filter((res: any) => res === Endpoints.New || res === Endpoints.Default),
+  //     switchMap((res) => {
+  //       if (res) {
+  //         console.log('getTasks called')
+  //        // return this.httpService.getTasks(Endpoints.New)
+  //       }
+  //       return throwError(() => new Error(''))
+  //     })).subscribe(
+  //       (taskList: ITask[]) => {
+  //         this.newTasks = taskList
+  //       }
+  //     )
+  // }
 }
