@@ -24,11 +24,11 @@ export class NewTasksComponent {
   
   ngOnInit(): void {
     this.httpService.event.pipe(
-      filter((res: any) => res === Endpoints.New || res === Endpoints.Default),
+     // filter((res: any) => res === Endpoints.New || res === Endpoints.Default),
       switchMap((res) => {
         if (res) {
           console.log('getTasks called')
-          return this.httpService.getTasks(Endpoints.New)
+         // return this.httpService.getTasks(Endpoints.New)
         }
         return throwError(() => new Error(''))
       })).subscribe(

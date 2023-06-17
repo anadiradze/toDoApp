@@ -20,7 +20,7 @@ export class RotationServiceService {
 
 
   changeStatus(targetTask: ITask, newStatus: Endpoints) {
-    this.httpService.deleteTask(targetTask.id!, targetTask.status).pipe(
+    this.httpService.deleteTask(targetTask.id!).pipe(
       tap(() => this.httpService.event.next(targetTask.status)
       ),
       concatMap(() => { return this.httpService.addTask({ title: targetTask.title, status: newStatus }) }),

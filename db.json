@@ -1,16 +1,14 @@
 {
-  "new": [
+  "tasks": [
     {
       "title": "Task 1  - new",
       "status": "new",
       "id": 1
-    },
-    {
+    }, {
       "title": "Task 2  - new",
       "status": "new",
       "id": 2
-    },
-    {
+    }, {
       "title": "Task 3  - new",
       "status": "new",
       "id": 3
@@ -39,59 +37,63 @@
       "title": "Task 8  - new",
       "status": "new",
       "id": 8
-    },
-    {
+    }, {
       "title": "Task 9  - new",
       "status": "new",
       "id": 9
-    }
-  ],
-  "inProgress": [
-    {
-      "title": "Task 1 - inProgress",
-      "status": "inProgress",
-      "id": 1
+    }, {
+      "title": "Task 10  - new",
+      "status": "new",
+      "id": 10
     },
     {
-      "id": 2,
+      "id": 11,
+      "title": "Task 1 - inProgress",
+      "status": "inProgress"
+    },
+    {
+      "id": 12,
       "title": "Task 2 - inProgress",
       "status": "inProgress"
     },
     {
-      "id": 3,
       "title": "Task 3 - inProgress",
-      "status": "inProgress"
+      "status": "inProgress",
+      "id": 13
     },
     {
       "title": "Task 4 - inProgress",
       "status": "inProgress",
-      "id": 4
+      "id": 14
     },
     {
-      "title": "Task 5 - inProgress",
+      "title": "Task 5  - inProgress",
       "status": "inProgress",
-      "id": 5
+      "id": 15
     },
     {
-      "title": "Task 6  - inProgress",
+      "title": "Task   - inProgress",
       "status": "inProgress",
-      "id": 6
-    }
-  ],
-  "done": [
+      "id": 16
+    },
     {
-      "id": 1,
+      "id": 17,
       "title": "Task 1 - done",
       "status": "done"
     },
     {
-      "id": 2,
+      "id": 18,
       "title": "Task 2 - done",
       "status": "done"
     },
     {
-      "id": 3,
+      "id": 19,
       "title": "Task 3 - done",
+      "status": "done"
+    },
+    {
+      "id": 20,
+      "title": "Task 4 - done",
       "status": "done"
     }
   ]

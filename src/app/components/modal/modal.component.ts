@@ -22,7 +22,7 @@ export class ModalComponent {
   addTask() {
     const task: ITask = { title: this.taskNameControl.value, status: Endpoints.New }
     this.httpService.addTask(task).subscribe((res) => {
-       this.httpService.event.next(Endpoints.New);
+      this.httpService.refreshData = true;
     });
     this.modalService.closeModal()
   }

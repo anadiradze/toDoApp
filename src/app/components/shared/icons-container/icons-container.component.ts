@@ -11,7 +11,7 @@ import { RotationServiceService } from 'src/app/services/rotation-service.servic
 
 export class IconsContainerComponent implements OnInit {
   @Input() targetItem!: ITask
- 
+
 
   newStatusEnum = this.rotationService.newStatusEnum
   inProgressStatusEnum = this.rotationService.inProgressStatusEnum
@@ -26,9 +26,10 @@ export class IconsContainerComponent implements OnInit {
 
   }
 
-  deleteTask(id: number, status: Endpoints) {
-    this.httpService.deleteTask(id, status).subscribe((res) => {
-      this.httpService.event.next(status);
+  deleteTask(id: number) {
+    this.httpService.deleteTask(id).subscribe((res) => {
+     this.httpService.refreshData=true
+      console.log(id,'id')
     })
   }
 

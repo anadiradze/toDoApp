@@ -5,5 +5,5 @@
         [ngClass]="{ 'display-none': targetItem.status === inProgressStatusEnum }">
     <img class="icon" src="assets/done.png" alt="moveToDone" (click)="moveToDone()"
         [ngClass]="{ 'display-none': targetItem.status === doneStatusEnum } ">
-    <img class="icon" src="assets/bin.png" alt="delete" (click)="deleteTask(targetItem.id,targetItem.status)">
+    <img class="icon" src="assets/bin.png" alt="delete" (click)="deleteTask(targetItem.id)">
 </div>

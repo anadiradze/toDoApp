@@ -6,10 +6,15 @@
     </div>
 
     <app-modal *ngIf="isModalServiceVisible()"></app-modal>
-
     <div class="board-lists">
-        <app-new-tasks></app-new-tasks>
-        <app-in-progress-tasks></app-in-progress-tasks>
-        <app-finished-tasks></app-finished-tasks>
+        <app-list-container>
+            <app-list-item [taskItems]="newTasks"></app-list-item>
+        </app-list-container>
+        <app-list-container>
+            <app-list-item [taskItems]="inProgressTasks"></app-list-item>
+        </app-list-container>
+        <app-list-container>
+            <app-list-item [taskItems]="doneTasks"></app-list-item>
+        </app-list-container>
     </div>
 </div>

@@ -22,7 +22,7 @@ export class FinishedTasksComponent {
   ngOnInit(): void {
     this.httpService.event.pipe(filter((res: any) => res === Endpoints.Done || res === Endpoints.Default), switchMap((res) => {
       if (res) {
-        return this.httpService.getTasks(Endpoints.Done)
+       // return this.httpService.getTasks(Endpoints.Done)
       }
       return throwError(() => new Error(''))
     })).subscribe(

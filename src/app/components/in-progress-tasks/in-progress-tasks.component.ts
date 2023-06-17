@@ -22,7 +22,7 @@ export class InProgressTasksComponent implements OnInit {
   ngOnInit(): void {
     this.httpService.event.pipe(filter((res: any) => res === Endpoints.InProgress || res === Endpoints.Default), switchMap((res) => {
       if (res) {
-        return this.httpService.getTasks(Endpoints.InProgress)
+       // return this.httpService.getTasks(Endpoints.InProgress)
       }
       return throwError(() => new Error(''))
     })).subscribe(
