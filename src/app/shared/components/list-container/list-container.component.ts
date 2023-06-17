@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Endpoints, ITask } from 'src/app/models/http-model.model';
-import { RotationServiceService } from 'src/app/services/rotation-service.service';
+import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
 
 @Component({
   selector: 'app-list-container',

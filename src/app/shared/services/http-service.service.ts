@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, tap, map } from 'rxjs/operators';
-import { Endpoints, ITask } from '../models/http-model.model';
+import { Endpoints, ITask } from '../../models/http-model.model';
 
 @Injectable({
   providedIn: 'root',
