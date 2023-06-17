@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { filter, switchMap, throwError } from 'rxjs';
-import { Endpoints, ITask } from 'src/app/models/http-model.model';
 import { HttpServiceService } from 'src/app/services/http-service.service';
 import { RotationServiceService } from 'src/app/services/rotation-service.service';
 

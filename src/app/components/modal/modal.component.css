@@ -43,11 +43,11 @@ button {
 }
 
 button:first-child {
-    background: #CD5D7D;
+    background: #0073ea;
     color: #fff;
 }
 
 button:last-child {
     background-color: #fff;
-    color: #CD5D7D;
+    color: #0073ea;
 }

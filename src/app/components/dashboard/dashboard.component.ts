@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs';
+import { Observable, map, switchMap, tap } from 'rxjs';
 import { Endpoints, ITask } from 'src/app/models/http-model.model';
 import { HttpServiceService } from 'src/app/services/http-service.service';
 import { ModalServiceService } from 'src/app/services/modal-service.service';
@@ -8,42 +8,61 @@ import { RotationServiceService } from 'src/app/services/rotation-service.servic
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-
   constructor(
     private modalService: ModalServiceService,
     private httpService: HttpServiceService,
-  ) { }
+    private rotationService: RotationServiceService
+  ) {}
 
-  allTasks: ITask[] = []
-  newTasks: ITask[] = []
-  inProgressTasks: ITask[] = []
-  doneTasks: ITask[] = []
+  newStatusEnum = this.rotationService.newStatusEnum;
+  inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
+  doneStatusEnum = this.rotationService.doneStatusEnum;
+
+  allTasks$!: Observable<ITask[]>;
+  newTasks$!: Observable<ITask[]>;
+  inProgressTasks$!: Observable<ITask[]>;
+  doneTasks$!: Observable<ITask[]>;
 
   ngOnInit(): void {
-    this.getTasks()
-    console.log("newTasks from dashboard ngOnInit", this.allTasks)
+    this.getTasks();
   }
 
   getTasks() {
-    this.httpService.isDataChanged$.pipe(
+    this.allTasks$ = this.httpService.isDataChanged$.pipe(
+      tap(()=>console.log('isDataChanged$ called before switchmap')),
       switchMap(() => {
         return this.httpService.getTasks()
       })
-    ).subscribe({
-      next: (AllTasksFromService: ITask[]) => {
-        this.newTasks = AllTasksFromService.filter((task) => { return task.status === Endpoints.New })
-        this.inProgressTasks = AllTasksFromService.filter((task) => { return task.status === Endpoints.InProgress })
-        this.doneTasks = AllTasksFromService.filter((task) => { return task.status === Endpoints.Done })
-      }
-    })
+    );
 
+    this.newTasks$ = this.allTasks$.pipe(
+      map((AllTasksFromService: ITask[]) => {
+        return AllTasksFromService.filter(
+          (task) => task.status === Endpoints.New
+        );
+      })
+    );
+    this.inProgressTasks$ = this.allTasks$.pipe(
+      map((AllTasksFromService: ITask[]) => {
+        return AllTasksFromService.filter(
+          (task) => task.status === Endpoints.InProgress
+        );
+      })
+    );
+
+    this.doneTasks$ = this.allTasks$.pipe(
+      map((AllTasksFromService: ITask[]) => {
+        return AllTasksFromService.filter(
+          (task) => task.status === Endpoints.Done
+        );
+      })
+    );
   }
   showModal() {
-    this.modalService.openModal()
-    console.log(this.newTasks, "newTasks")
+    this.modalService.openModal();
   }
   isModalServiceVisible(): boolean {
     return this.modalService.showModal;

@@ -1,42 +1,44 @@
 .board-lists-frame {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.board-lists-inner-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
 }
 
 .board-lists {
-    display: grid;
-    grid-auto-columns: 300px;
-    grid-auto-flow: column;
-    grid-gap: 10px;
+  display: grid;
+  grid-auto-columns: 300px;
+  grid-auto-flow: column;
+  grid-gap: 10px;
 }
 
 .newTask {
-    width: 140px;
-    height: 50px;
-    background-color: #CD5D7D;
-    border-radius: 12px;
-    border: none;
-    color: white;
+  width: 140px;
+  height: 50px;
+  background-color: #0073ea;
+  border-radius: 12px;
+  border: none;
+  color: white;
 }
-h1{
-    font-size: 40px;
-    color: #526D82
+h1 {
+  font-size: 40px;
+  color: black;
 }
 .inputAndButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 30px;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 20px;
 }
 
 .searchInput {
-    width: 752.85px;
-    height: 50px;
-    border: 1px solid #D2D2D2;
-    border-radius: 12px;
+  width: 752.85px;
+  height: 50px;
+  border: 1px solid #d2d2d2;
+  border-radius: 12px;
 }
-

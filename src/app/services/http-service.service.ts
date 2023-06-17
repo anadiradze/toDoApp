@@ -5,27 +5,24 @@ import { filter, tap, map } from 'rxjs/operators';
 import { Endpoints, ITask } from '../models/http-model.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class HttpServiceService {
-  event: BehaviorSubject<Endpoints> = new BehaviorSubject<Endpoints>(Endpoints.Default);
-  private refreshData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  e: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  private refreshData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    true
+  );
 
   set refreshData(refreshStatus: boolean) {
-    this.refreshData$.next(refreshStatus)
+    this.refreshData$.next(refreshStatus);
+
   }
-
-
 
   get isDataChanged$(): Observable<boolean> {
-    return this.refreshData$.asObservable();
+    return this.refreshData$.asObservable()
   }
 
-
-  constructor(private http: HttpClient) { }
-  url = 'http://localhost:3004/tasks'
+  constructor(private http: HttpClient) {}
+  url = 'http://localhost:3004/tasks';
   /* 
     getTasks(status: string): Observable<any> {
       return this.http.get<any>(this.url + status);
@@ -38,9 +35,8 @@ export class HttpServiceService {
     return this.http.get<ITask[]>(this.url);
   }
 
-
   addTask(task: ITask): Observable<ITask> {
-    return this.http.post<ITask>(this.url, task)
+    return this.http.post<ITask>(this.url, task);
   }
 
   deleteTask(id: number): Observable<ITask> {
@@ -58,6 +54,3 @@ export class HttpServiceService {
     return this.http.put(url, updatedTask);
   }
 }
-
-
-

@@ -2,38 +2,43 @@
 <!--  <div class="card-wrapper" *ngFor="let taskItem of items">
  -->
 <div class="card-wrapper" *ngFor="let taskItem of taskItems">
-    <div class="card">
-        <p>{{taskItem.title}} </p>
-    </div>
-    <div class="icons-container" *ngIf="taskItem && taskItem.id && taskItem.status">
+  <div class="card">
+    <p>{{ taskItem.title }}</p>
+  </div>
+  <div
+    class="icons-container"
+    *ngIf="taskItem && taskItem.id && taskItem.status"
+  >
+    <img
+      class="icon"
+      src="assets/new.png"
+      alt="icon"
+      (click)="changeTaskStatus(taskItem, newStatusEnum)"
+      [ngClass]="{ 'display-none': taskItem.status === newStatusEnum }"
+    />
 
-        <img 
-        class="icon" 
-        src="assets/new.png" 
-        alt="icon" 
-        (click)="changeTaskStatus(taskItem,newStatusEnum)"
-        [ngClass]="{ 'display-none': taskItem.status === newStatusEnum }">
+    <img
+      class="icon"
+      src="assets/in-progress.png"
+      alt="icon"
+      (click)="changeTaskStatus(taskItem, inProgressStatusEnum)"
+      [ngClass]="{ 'display-none': taskItem.status === inProgressStatusEnum }"
+    />
 
-        <img 
-        class="icon" 
-        src="assets/in-progress.png" 
-        alt="icon"
-        (click)="changeTaskStatus(taskItem,inProgressStatusEnum)"
-        [ngClass]="{ 'display-none': taskItem.status === inProgressStatusEnum }">
+    <img
+      class="icon"
+      src="assets/done.png"
+      alt="icon"
+      (click)="changeTaskStatus(taskItem, doneStatusEnum)"
+      [ngClass]="{ 'display-none': taskItem.status === doneStatusEnum }"
+    />
 
-        <img 
-        class="icon" 
-        src="assets/done.png" 
-        alt="icon" 
-        (click)="changeTaskStatus(taskItem,doneStatusEnum)"
-        [ngClass]="{ 'display-none': taskItem.status === doneStatusEnum } ">
-        
-        <img 
-        class="icon" 
-        src="assets/bin.png" 
-        alt="icon" 
-        (click)="deleteTask(taskItem.id)">
-        
-    </div>
+    <img
+      class="icon"
+      src="assets/bin.png"
+      alt="icon"
+      (click)="deleteTask(taskItem.id)"
+    />
+  </div>
 </div>
 <!-- </div> -->

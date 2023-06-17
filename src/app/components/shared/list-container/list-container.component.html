@@ -1,7 +1,7 @@
 <div class="board-list">
-    <div class="list-title">
-       {{listTitle | titlecase}}
-       <ng-content></ng-content>
-    </div>
-   
+    <div class="list-title" [ngClass]="{ 'redTitleBackground': title === newStatusEnum, 'yellowTitleBackground': title === inProgressStatusEnum, 'greenTitleBackground': title === doneStatusEnum }">
+        {{ title | titlecase }}
+  </div>
+  <ng-content></ng-content>
 </div>
+ 

@@ -1,25 +1,37 @@
 .board-list {
-    max-width: 350px;
-    max-height: 64vh;
-    display: flex;
-    flex-direction: column;
-    padding: 0 10px 20px 10px;
-    overflow: auto;
-    border-radius: 5px;
-    border: 7px solid #F3DFE3;
-    color: #27374D;
+  max-width: 350px;
+  max-height: 64vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 20px 0;
+  overflow: auto;
+  border-radius: 10px;
+  border: 1px solid #f3dfe3;
+  color: #27374d;
 }
 
 .list-title {
-    font-weight: bold;
-    color: #526D82;
-    position: sticky;
-    top: 0;
-    background-color: #FCEAEA;
-    padding: 12px;
+  font-weight: bold;
+  color: white;
+  position: sticky;
+  border-radius: 5px;
+  padding: 12px 0 12px 12px;
+  font-size: 18px;
+  top: 0;
+  letter-spacing: 1.09px
 }
 
 .add-card {
-    padding-top: 10px;
-    padding-bottom: 5px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+
+.redTitleBackground {
+  background-color: rgb(226, 68, 92);
+}
+.yellowTitleBackground {
+  background-color: rgb(240, 175, 83);
+}
+.greenTitleBackground {
+  background-color: rgb(0, 200, 117);
 }
