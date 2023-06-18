@@ -1,6 +1,11 @@
 {
   "tasks": [
     {
+      "title": "Task 1  - new",
+      "status": "new",
+      "id": 1
+    },
+    {
       "title": "Task 2  - new",
       "status": "new",
       "id": 2

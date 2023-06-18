@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NewTasksComponent } from './components/new-tasks/new-tasks.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { ModalComponent } from './components/modal/modal.component';
@@ -14,7 +13,6 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    NewTasksComponent,
     DashboardComponent,
     ModalComponent,
   ],

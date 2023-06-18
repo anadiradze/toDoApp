@@ -16,7 +16,6 @@ export class HttpServiceService {
     this.refreshData$.next(refreshStatus);
 
   }
-
   get isDataChanged$(): Observable<boolean> {
     return this.refreshData$.asObservable()
   }

@@ -32,12 +32,8 @@ export class ListItemComponent implements OnInit {
     this.httpService.changeStatus(targetTask, newStatus).subscribe({
       next: (response) => {
         this.httpService.refreshData = true;
-        console.log('Task status changed successfully:', response);
-        // Handle success response
       },
       error: (error) => {
-        console.error('Error updating task status:', error);
-        // Handle error response
       },
     });
   }

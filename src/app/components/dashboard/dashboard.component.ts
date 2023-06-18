@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, map, switchMap, tap } from 'rxjs';
+import { Observable, map, switchMap, take, tap } from 'rxjs';
 import { Endpoints, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
@@ -32,8 +32,7 @@ export class DashboardComponent implements OnInit {
 
   getTasks() {
     this.allTasks$ = this.httpService.isDataChanged$.pipe(
-      tap(()=>console.log('isDataChanged$ called before switchmap')),
-      switchMap(() => {
+      switchMap((res) => {
         return this.httpService.getTasks()
       })
     );
