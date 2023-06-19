@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Endpoints, ITask } from 'src/app/shared/models/http-model.model';
+import { Endpoints } from 'src/app/shared/models/http-model.model';
 import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
 
 @Component({
@@ -8,9 +8,7 @@ import { RotationServiceService } from 'src/app/shared/services/rotation-service
   styleUrls: ['./list-container.component.css'],
 })
 export class ListContainerComponent implements OnInit {
-  constructor(
-    private rotationService: RotationServiceService
-    ) {}
+  constructor(private rotationService: RotationServiceService) {}
   @Input() title!: Endpoints;
   ngOnInit(): void {}
   newStatusEnum = this.rotationService.newStatusEnum;
@@ -21,6 +19,6 @@ export class ListContainerComponent implements OnInit {
   red: string = 'rgb(226, 68, 92)';
   green: string = 'rgb(0, 200, 117)';
   grey: string = 'rgb(196, 196, 196)';
-  
- 
+
+
 }

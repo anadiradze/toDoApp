@@ -33,8 +33,13 @@ export class ListItemComponent implements OnInit {
       next: (response) => {
         this.httpService.refreshData = true;
       },
-      error: (error) => {
-      },
+      error: (error) => {},
     });
+  }
+
+  onDragStart(event: DragEvent, id: number | undefined) {
+    console.log('drag:' ,event.target)
+    event.dataTransfer?.setData('id', `${id}`);
+    
   }
 }

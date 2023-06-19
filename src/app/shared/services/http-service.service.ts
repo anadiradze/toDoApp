@@ -33,6 +33,9 @@ export class HttpServiceService {
   getTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.url);
   }
+  getTaskById(id: number): Observable<ITask> {
+    return this.http.get<ITask>(`${this.url}/${id}`);
+  }
 
   addTask(task: ITask): Observable<ITask> {
     return this.http.post<ITask>(this.url, task);

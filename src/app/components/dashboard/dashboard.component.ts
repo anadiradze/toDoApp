@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, map, switchMap, take, tap } from 'rxjs';
+import {
+  Observable,
+  concatMap,
+  filter,
+  map,
+  mergeMap,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
 import { Endpoints, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
@@ -33,7 +42,7 @@ export class DashboardComponent implements OnInit {
   getTasks() {
     this.allTasks$ = this.httpService.isDataChanged$.pipe(
       switchMap((res) => {
-        return this.httpService.getTasks()
+        return this.httpService.getTasks();
       })
     );
 
@@ -65,5 +74,25 @@ export class DashboardComponent implements OnInit {
   }
   isModalServiceVisible(): boolean {
     return this.modalService.showModal;
+  }
+
+  onDrop(event: DragEvent, newStatus: Endpoints) {
+    event.preventDefault();
+    this.httpService
+      .getTaskById(+event.dataTransfer?.getData('id')!)
+      .pipe(
+        filter((task) => task.status !== newStatus),
+        concatMap((task) => {
+          return this.httpService.changeStatus(task, newStatus);
+        }),
+        tap(() => {
+          this.httpService.refreshData = true;
+        })
+      )
+      .subscribe();
+  }
+
+  onDragOver(event: DragEvent) {
+    event.preventDefault();
   }
 }

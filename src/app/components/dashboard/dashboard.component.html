@@ -1,22 +1,37 @@
 <div class="board-lists-frame">
-    <div class="board-lists-inner-frame">
-  <h1>DASHBOARD</h1>
-  <div class="inputAndButton">
-    <input type="text" class="searchInput" />
-    <button class="newTask" (click)="showModal()">+ New Task</button>
-  </div>
+  <div class="board-lists-inner-frame">
+    <h1>DASHBOARD</h1>
+    <div class="inputAndButton">
+      <input type="text" class="searchInput" />
+      <button class="newTask" (click)="showModal()">+ New Task</button>
+    </div>
 
-  <app-modal *ngIf="isModalServiceVisible()"></app-modal>
-  <div class="board-lists">
-    <app-list-container [title]="newStatusEnum">
-      <app-list-item [taskItems]="newTasks$ | async"></app-list-item>
-    </app-list-container>
-    <app-list-container [title]="inProgressStatusEnum">
-      <app-list-item [taskItems]="inProgressTasks$ | async"></app-list-item>
-    </app-list-container>
-    <app-list-container [title]="doneStatusEnum">
-      <app-list-item [taskItems]="doneTasks$ | async"></app-list-item>
-    </app-list-container>
+    <app-modal *ngIf="isModalServiceVisible()"></app-modal>
+
+    <div class="board-lists">
+      <app-list-container
+        [title]="newStatusEnum"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event, newStatusEnum)"
+      >
+        <app-list-item [taskItems]="newTasks$ | async"></app-list-item>
+      </app-list-container>
+
+      <app-list-container
+        [title]="inProgressStatusEnum"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event, inProgressStatusEnum)"
+      >
+        <app-list-item [taskItems]="inProgressTasks$ | async"></app-list-item>
+      </app-list-container>
+
+      <app-list-container
+        [title]="doneStatusEnum"
+        (dragover)="onDragOver($event)"
+        (drop)="onDrop($event, doneStatusEnum)"
+      >
+        <app-list-item [taskItems]="doneTasks$ | async"></app-list-item>
+      </app-list-container>
+    </div>
   </div>
-</div>
 </div>
