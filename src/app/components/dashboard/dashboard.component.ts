@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Observable,
-  concatMap,
-  filter,
-  map,
-  mergeMap,
-  switchMap,
-  take,
-  tap,
-} from 'rxjs';
+import { Observable, map, switchMap } from 'rxjs';
 import { Endpoints, ITask } from 'src/app/shared/models/http-model.model';
+import { DragAndDropServiceService } from 'src/app/shared/services/drag-and-drop-service.service';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
 import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
@@ -23,7 +15,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private modalService: ModalServiceService,
     private httpService: HttpServiceService,
-    private rotationService: RotationServiceService
+    private rotationService: RotationServiceService,
+    private dragAndDropService: DragAndDropServiceService
   ) {}
 
   newStatusEnum = this.rotationService.newStatusEnum;
@@ -76,22 +69,9 @@ export class DashboardComponent implements OnInit {
     return this.modalService.showModal;
   }
 
-  onDrop(event: DragEvent, newStatus: Endpoints) {
-    event.preventDefault();
-    this.httpService
-      .getTaskById(+event.dataTransfer?.getData('id')!)
-      .pipe(
-        filter((task) => task.status !== newStatus),
-        concatMap((task) => {
-          return this.httpService.changeStatus(task, newStatus);
-        }),
-        tap(() => {
-          this.httpService.refreshData = true;
-        })
-      )
-      .subscribe();
+  onDropAccordingStatus(event: DragEvent, newStatus: Endpoints) {
+    this.dragAndDropService.onDrop(event, newStatus);
   }
-
   onDragOver(event: DragEvent) {
     event.preventDefault();
   }

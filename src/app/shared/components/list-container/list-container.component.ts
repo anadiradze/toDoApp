@@ -11,6 +11,7 @@ export class ListContainerComponent implements OnInit {
   constructor(private rotationService: RotationServiceService) {}
   @Input() title!: Endpoints;
   ngOnInit(): void {}
+
   newStatusEnum = this.rotationService.newStatusEnum;
   inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
   doneStatusEnum = this.rotationService.doneStatusEnum;
@@ -19,6 +20,4 @@ export class ListContainerComponent implements OnInit {
   red: string = 'rgb(226, 68, 92)';
   green: string = 'rgb(0, 200, 117)';
   grey: string = 'rgb(196, 196, 196)';
-
-
 }

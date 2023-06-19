@@ -31,21 +31,14 @@ export class ListItemComponent implements OnInit {
 
   changeTaskStatus(targetTask: ITask, newStatus: Endpoints): void {
     this.httpService.changeStatus(targetTask, newStatus).subscribe({
-      next: (response) => {
+      next: () => {
         this.httpService.refreshData = true;
       },
-      error: (error) => {},
+      error: () => {},
     });
   }
 
   onDragStart(event: DragEvent, id: number | undefined) {
-    console.log('drag:' ,event.target)
     event.dataTransfer?.setData('id', `${id}`);
-    
-  }
-  toggleExpand() {
-    this.isExpanded = !this.isExpanded;
-    console.log('clicked')
-    console.log(this.isExpanded)
   }
 }
