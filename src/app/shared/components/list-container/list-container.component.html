@@ -1,6 +1,4 @@
-<div class="board-list"
->
-  <div
+<div
     class="list-title"
     [ngClass]="{
       redTitleBackground: title === newStatusEnum,
@@ -10,5 +8,8 @@
   >
     {{ title | titlecase }}
   </div>
+<div class="board-list"
+>
+  
   <ng-content></ng-content>
 </div>

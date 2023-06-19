@@ -15,6 +15,7 @@ export class ListItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+  isExpanded = false;
 
   @Input() taskItems: ITask[] | null = [];
 
@@ -41,5 +42,10 @@ export class ListItemComponent implements OnInit {
     console.log('drag:' ,event.target)
     event.dataTransfer?.setData('id', `${id}`);
     
+  }
+  toggleExpand() {
+    this.isExpanded = !this.isExpanded;
+    console.log('clicked')
+    console.log(this.isExpanded)
   }
 }
