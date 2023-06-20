@@ -12,7 +12,7 @@
       <app-list-container
         [title]="newStatusEnum"
         (dragover)="onDragOver($event)"
-        (drop)="onDropAccordingStatus($event, newStatusEnum)"
+        (drop)="onDrop($event, newStatusEnum)"
       >
         <app-list-item [taskItems]="newTasks$ | async"></app-list-item>
       </app-list-container>
@@ -20,7 +20,7 @@
       <app-list-container
         [title]="inProgressStatusEnum"
         (dragover)="onDragOver($event)"
-        (drop)="onDropAccordingStatus($event, inProgressStatusEnum)"
+        (drop)="onDrop($event, inProgressStatusEnum)"
       >
         <app-list-item [taskItems]="inProgressTasks$ | async"></app-list-item>
       </app-list-container>
@@ -28,7 +28,7 @@
       <app-list-container
         [title]="doneStatusEnum"
         (dragover)="onDragOver($event)"
-        (drop)="onDropAccordingStatus($event, doneStatusEnum)"
+        (drop)="onDrop($event, doneStatusEnum)"
       >
         <app-list-item [taskItems]="doneTasks$ | async"></app-list-item>
       </app-list-container>

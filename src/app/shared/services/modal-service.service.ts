@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ModalServiceService {
-
-  constructor() { }
-  showModal = false
+  constructor() {}
+  showModal = false;
   openModal() {
-    this.showModal = true
+    this.showModal = true;
   }
   closeModal() {
-    this.showModal = false
+    this.showModal = false;
   }
 }

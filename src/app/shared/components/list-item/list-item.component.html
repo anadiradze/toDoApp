@@ -5,7 +5,15 @@
   (dragstart)="onDragStart($event, taskItem.id)"
 >
   <div class="card">
-    <p>{{ taskItem.title }}</p>
+    <div class="card-content">
+      <p>{{ taskItem.title }}</p>
+      <img
+        class="icon edit"
+        src="assets/edit.svg"
+        alt="icon"
+        (click)="onEdit($event)"
+      />
+    </div>
   </div>
   <div
     class="icons-container"

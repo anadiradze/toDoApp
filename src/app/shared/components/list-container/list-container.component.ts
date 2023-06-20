@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Endpoints } from 'src/app/shared/models/http-model.model';
+import { TaskItems } from 'src/app/shared/models/http-model.model';
 import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { RotationServiceService } from 'src/app/shared/services/rotation-service
 })
 export class ListContainerComponent implements OnInit {
   constructor(private rotationService: RotationServiceService) {}
-  @Input() title!: Endpoints;
+  @Input() title!: TaskItems;
   ngOnInit(): void {}
 
   newStatusEnum = this.rotationService.newStatusEnum;

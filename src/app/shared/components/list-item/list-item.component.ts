@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Endpoints, ITask } from 'src/app/shared/models/http-model.model';
+import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
 
@@ -29,7 +29,7 @@ export class ListItemComponent implements OnInit {
     });
   }
 
-  changeTaskStatus(targetTask: ITask, newStatus: Endpoints): void {
+  changeTaskStatus(targetTask: ITask, newStatus: TaskItems): void {
     this.httpService.changeStatus(targetTask, newStatus).subscribe({
       next: () => {
         this.httpService.refreshData = true;
@@ -41,4 +41,5 @@ export class ListItemComponent implements OnInit {
   onDragStart(event: DragEvent, id: number | undefined) {
     event.dataTransfer?.setData('id', `${id}`);
   }
+  onEdit(event: Event) {}
 }

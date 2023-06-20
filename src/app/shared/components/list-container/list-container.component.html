@@ -1,15 +1,13 @@
 <div
-    class="list-title"
-    [ngClass]="{
-      redTitleBackground: title === newStatusEnum,
-      yellowTitleBackground: title === inProgressStatusEnum,
-      greenTitleBackground: title === doneStatusEnum
-    }"
-  >
-    {{ title | titlecase }}
-  </div>
-<div class="board-list"
+  class="list-title"
+  [ngClass]="{
+    redTitleBackground: title === newStatusEnum,
+    yellowTitleBackground: title === inProgressStatusEnum,
+    greenTitleBackground: title === doneStatusEnum
+  }"
 >
-  
+  {{ title | titlecase }}
+</div>
+<div class="board-list">
   <ng-content></ng-content>
 </div>
