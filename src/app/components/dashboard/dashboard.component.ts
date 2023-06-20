@@ -11,12 +11,15 @@ import { RotationServiceService } from 'src/app/shared/services/rotation-service
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  task!: ITask;
+
   constructor(
     private modalService: ModalServiceService,
     private httpService: HttpServiceService,
     private rotationService: RotationServiceService
   ) {}
 
+  defaultStatusEnum = this.rotationService.DefaultStatusEnum;
   newStatusEnum = this.rotationService.newStatusEnum;
   inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
   doneStatusEnum = this.rotationService.doneStatusEnum;
@@ -26,6 +29,7 @@ export class DashboardComponent implements OnInit {
   inProgressTasks$!: Observable<ITask[]>;
   doneTasks$!: Observable<ITask[]>;
 
+  // get all the tasks when app starts
   ngOnInit(): void {
     this.getTasks();
   }
@@ -37,6 +41,7 @@ export class DashboardComponent implements OnInit {
       })
     );
 
+    // filter the allTasks observable to implement async pipes according to task statuses.
     this.newTasks$ = this.allTasks$.pipe(
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
@@ -51,7 +56,6 @@ export class DashboardComponent implements OnInit {
         );
       })
     );
-
     this.doneTasks$ = this.allTasks$.pipe(
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
@@ -60,13 +64,13 @@ export class DashboardComponent implements OnInit {
       })
     );
   }
-  showModal() {
-    this.modalService.openModal();
-  }
+
+  // modal pops-up conditionally according to isModalServiceVisible is true or false.
   isModalServiceVisible(): boolean {
     return this.modalService.showModal;
   }
 
+  //  changeStatus when drop task-item to the list-container
   onDrop(event: DragEvent, newStatus: TaskItems) {
     event.preventDefault();
     this.httpService
@@ -85,5 +89,19 @@ export class DashboardComponent implements OnInit {
 
   onDragOver(event: DragEvent) {
     event.preventDefault();
+  }
+
+  //clear the input value on addTask. E.x After user clicks edit task2 and then clicks addTask, input value still has task2 as a value. So it becomes clean after this operation.
+  openModalOnAddTask() {
+    this.modalService.openModal();
+    this.task = {
+      status: this.defaultStatusEnum,
+      title: '',
+    };
+    this.modalService.editModeisOn = false;
+  }
+
+  receiveTaskInDashboard(task: ITask) {
+    this.task = task;
   }
 }

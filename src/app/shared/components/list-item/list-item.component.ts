@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
+import { ModalServiceService } from '../../services/modal-service.service';
 
 @Component({
   selector: 'app-list-item',
@@ -9,14 +10,14 @@ import { RotationServiceService } from 'src/app/shared/services/rotation-service
   styleUrls: ['./list-item.component.css'],
 })
 export class ListItemComponent implements OnInit {
+  @Output() onEdit: EventEmitter<ITask> = new EventEmitter<ITask>();
   constructor(
     private httpService: HttpServiceService,
-    private rotationService: RotationServiceService
+    private rotationService: RotationServiceService,
+    private modalService: ModalServiceService
   ) {}
 
   ngOnInit(): void {}
-  isExpanded = false;
-
   @Input() taskItems: ITask[] | null = [];
 
   newStatusEnum = this.rotationService.newStatusEnum;
@@ -38,8 +39,18 @@ export class ListItemComponent implements OnInit {
     });
   }
 
+
   onDragStart(event: DragEvent, id: number | undefined) {
     event.dataTransfer?.setData('id', `${id}`);
   }
-  onEdit(event: Event) {}
+
+// Create eventemitter to emit the task object to modal component in order to change existing task.
+  @Output() moveTaskToDashboard: EventEmitter<ITask> =
+    new EventEmitter<ITask>();
+
+  editTask(task: ITask) {
+    this.moveTaskToDashboard.emit(task);
+    this.modalService.openModal();
+    this.modalService.editModeisOn = true;
+  }
 }

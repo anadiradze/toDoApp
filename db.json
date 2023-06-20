@@ -1,13 +1,13 @@
 {
   "tasks": [
     {
-      "title": "Task 1  - new",
-      "status": "new",
+      "title": "Task 1 ",
+      "status": "done",
       "id": 1
     },
     {
-      "title": "Task 2  - new",
-      "status": "new",
+      "title": "Task 2  ",
+      "status": "done",
       "id": 2
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "title": "Task 5  - new",
-      "status": "new",
+      "status": "inProgress",
       "id": 5
     },
     {
@@ -32,7 +32,7 @@
     },
     {
       "title": "Task 7  - new",
-      "status": "new",
+      "status": "inProgress",
       "id": 7
     },
     {
@@ -53,11 +53,11 @@
     {
       "id": 11,
       "title": "Task 1 - inProgress",
-      "status": "inProgress"
+      "status": "done"
     },
     {
       "id": 12,
-      "title": "Task 2 - inProgress",
+      "title": "Task 2 - inProgressaaaa",
       "status": "inProgress"
     },
     {
@@ -92,7 +92,7 @@
     },
     {
       "id": 19,
-      "title": "Task 3 - done",
+      "title": "Task 3 - doneeeeeee",
       "status": "done"
     },
     {
@@ -101,9 +101,19 @@
       "status": "done"
     },
     {
-      "title": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "title": "Task 7  ",
       "status": "new",
       "id": 21
+    },
+    {
+      "title": "AVTO <3 ",
+      "status": "done",
+      "id": 22
+    },
+    {
+      "title": "Ano",
+      "status": "new",
+      "id": 23
     }
   ]
 }

@@ -1,14 +1,15 @@
-<div class="backdrop" (click)="onBackdropClick()">
+<div class="backdrop" (click)="closeModal()">
   <div class="modal" (click)="onModalClick($event)">
-    <h2>Add Task</h2>
+    <h2> {{editModeisOn ? 'Edit Task' : "Add Task"}}</h2>
     <input
       type="text"
       placeholder="Enter task name"
       [formControl]="taskNameControl"
     />
     <div class="modal-buttons">
-      <button (click)="addTask()">Add Task</button>
-      <button (click)="cancel()">Cancel</button>
+      <button *ngIf="!editModeisOn"(click)="addTask()">{{"Add Task"}}</button>
+      <button *ngIf="editModeisOn" (click)="updateTask()">{{'Save changes'}}</button>
+      <button (click)="closeModal()">Cancel</button>
     </div>
   </div>
 </div>

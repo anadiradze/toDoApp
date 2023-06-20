@@ -7,6 +7,7 @@ import { TaskItems, ITask } from '../models/http-model.model';
   providedIn: 'root',
 })
 export class HttpServiceService {
+  
   private refreshData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     true
   );
@@ -14,6 +15,7 @@ export class HttpServiceService {
   set refreshData(refreshStatus: boolean) {
     this.refreshData$.next(refreshStatus);
   }
+
   get isDataChanged$(): Observable<boolean> {
     return this.refreshData$.asObservable();
   }
@@ -24,6 +26,7 @@ export class HttpServiceService {
   getTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.url);
   }
+
   getTaskById(id: number): Observable<ITask> {
     return this.http.get<ITask>(`${this.url}/${id}`);
   }
@@ -35,9 +38,15 @@ export class HttpServiceService {
   deleteTask(id: number): Observable<ITask> {
     return this.http.delete<ITask>(`${this.url}/${id}`);
   }
+
   changeStatus(task: ITask, newStatus: TaskItems): Observable<any> {
     const url = `${this.url}/${task.id}`;
     const updatedTask = { ...task, status: newStatus };
     return this.http.put(url, updatedTask);
+  }
+
+  UpdateTask(task: ITask): Observable<any> {
+    const url = `${this.url}/${task.id}`;
+    return this.http.put(url, task);
   }
 }
