@@ -4,6 +4,13 @@ import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
 import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-dashboard',
@@ -46,28 +53,34 @@ export class DashboardComponent implements OnInit {
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
           (task) => task.status === TaskItems.New
-        ).sort((a, b) => {
-          return b.priority - a.priority;
-        });
-      })
+        )
+        // .sort((a, b) => {
+        //   return b.priority - a.priority;
+        // });
+      }),
+
     );
     this.inProgressTasks$ = this.allTasks$.pipe(
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
           (task) => task.status === TaskItems.InProgress
-        ).sort((a, b) => {
-          return b.priority - a.priority;
-        });
-      })
+        )
+        // .sort((a, b) => {
+        //   return b.priority - a.priority;
+        // });
+      }),
+    
     );
     this.doneTasks$ = this.allTasks$.pipe(
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
           (task) => task.status === TaskItems.Done
-        ).sort((a, b) => {
-          return b.priority - a.priority;
-        });
-      })
+        )
+        // .sort((a, b) => {
+        //   return b.priority - a.priority;
+        // });
+      }),
+
     );
   }
 
@@ -77,28 +90,48 @@ export class DashboardComponent implements OnInit {
   }
 
   //  changeStatus when drop task-item to the list-container
-  onDrop(event: DragEvent, newStatus: TaskItems) {
-    event.preventDefault();
-    const id = +event.dataTransfer?.getData('id')!;
-    const index = +event.dataTransfer?.getData('index')!;
+  // onDrop(event: DragEvent, newStatus: TaskItems) {
+  //   event.preventDefault();
+  //   const id = +event.dataTransfer?.getData('id')!;
+  //   const index = +event.dataTransfer?.getData('index')!;
 
-    const $taskItem = this.httpService.getTaskById(id);
-    $taskItem
-      .pipe(
-        //filter((task: ITask) => task.status !== newStatus),
-        concatMap((task) => {
-          return this.httpService.changeStatus(task, newStatus);
-        }),
-        tap(() => {
-          this.httpService.refreshData = true;
-          console.log('index', index);
-        })
-      )
-      .subscribe((res) => {});
-  }
+  //   const $taskItem = this.httpService.getTaskById(id);
+  //   $taskItem
+  //     .pipe(
+  //       //filter((task: ITask) => task.status !== newStatus),
+  //       concatMap((task) => {
+  //         return this.httpService.changeStatus(task, newStatus);
+  //       }),
+  //       tap(() => {
+  //         this.httpService.refreshData = true;
+  //         console.log('index', index);
+  //       })
+  //     )
+  //     .subscribe((res) => {});
+  // }
 
-  onDragOver(event: DragEvent) {
-    event.preventDefault();
+  // onDragOver(event: DragEvent) {
+  //   event.preventDefault();
+  // }
+
+  drop(event: CdkDragDrop<ITask[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+      console.log(event.container.data[event.currentIndex].priority,'currentIndex')
+      console.log(event.container.data[event.previousIndex].priority,'previousIndex')
+
+    }
   }
 
   //clear the input value on addTask. E.x After user clicks edit task2 and then clicks addTask, input value still has task2 as a value. So it becomes clean after this operation.

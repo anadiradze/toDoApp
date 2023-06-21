@@ -64,19 +64,19 @@
       "id": 11,
       "title": "Task 1 - inProgress",
       "status": "inProgress",
-      "priority": 1
+      "priority": 5
     },
     {
       "id": 12,
       "title": "Task 2 - inProgress",
       "status": "inProgress",
-      "priority": 1
+      "priority": 4
     },
     {
       "title": "Task 3 - inProgress",
       "status": "inProgress",
       "id": 13,
-      "priority": 1
+      "priority": 4
     },
     {
       "title": "Task 4 - inProgress",
@@ -94,7 +94,7 @@
       "title": "Task 6 - inProgress",
       "status": "inProgress",
       "id": 16,
-      "priority": 1
+      "priority": 4
     },
     {
       "title": "Task 7 - inProgress ",

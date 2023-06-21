@@ -11,36 +11,61 @@
     <div class="board-lists">
       <app-list-container
         [title]="newStatusEnum"
-        (drop)="onDrop($event, newStatusEnum)"
-        (dragover)="onDragOver($event)"
+        *ngIf="newTasks$ | async as newTasks"
+        cdkDropList
+        id="newTasksList"
+        [cdkDropListData]="newTasks"
+        [cdkDropListConnectedTo]="['inProgressTasksList', 'doneTasksList']"
+        (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
-          [taskItems]="newTasks$ | async"
+          *ngFor="let taskItem of newTasks"
+          [taskItem]="taskItem"
           (moveTaskToDashboard)="receiveTaskInDashboard($event)"
+          cdkDrag
         ></app-list-item>
       </app-list-container>
 
       <app-list-container
         [title]="inProgressStatusEnum"
-        (drop)="onDrop($event, inProgressStatusEnum)"
-        (dragover)="onDragOver($event)"
+        *ngIf="inProgressTasks$ | async as inProgressTasks"
+        cdkDropList
+        id="inProgressTasksList"
+        [cdkDropListData]="inProgressTasks"
+        [cdkDropListConnectedTo]="['newTasksList', 'doneTasksList']"
+        (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
-          [taskItems]="inProgressTasks$ | async"
+          *ngFor="let taskItem of inProgressTasks"
+          [taskItem]="taskItem"
           (moveTaskToDashboard)="receiveTaskInDashboard($event)"
+          cdkDrag
         ></app-list-item>
       </app-list-container>
 
       <app-list-container
         [title]="doneStatusEnum"
-        (drop)="onDrop($event, doneStatusEnum)"
-        (dragover)="onDragOver($event)"
+        *ngIf="doneTasks$ | async as doneTasks"
+        cdkDropList
+        id="doneTasksList"
+        [cdkDropListData]="doneTasks"
+        [cdkDropListConnectedTo]="['newTasksList', 'inProgressTasksList']"
+        (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
-          [taskItems]="doneTasks$ | async"
+          *ngFor="let taskItem of doneTasks"
+          [taskItem]="taskItem"
           (moveTaskToDashboard)="receiveTaskInDashboard($event)"
+          cdkDrag
         ></app-list-item>
       </app-list-container>
     </div>
   </div>
 </div>
+
+<!-- (drop)="onDrop($event, newStatusEnum)"
+        (dragover)="onDragOver($event)" -->
+<!-- (drop)="onDrop($event, inProgressStatusEnum)"
+        (dragover)="onDragOver($event)" -->
+<!-- (drop)="onDrop($event, doneStatusEnum)"
+        (dragover)="onDragOver($event)" -->

@@ -54,7 +54,7 @@ button:last-child {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
 }
 .prioritiesLabel {
   display: flex;

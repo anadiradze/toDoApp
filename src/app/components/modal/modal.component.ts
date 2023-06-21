@@ -17,7 +17,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   taskToEdit!: ITask;
   editModeisOn = this.modalService.editModeisOn;
   //priorities
-  priorities: number[] = [1, 2, 3, 4, 5];
+  priorities: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   // implement setter on Input(). when Input editTask changes function in setter is updated immediately.
   @Input() set editTask(taskToEdit: ITask) {

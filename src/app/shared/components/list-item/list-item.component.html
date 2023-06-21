@@ -1,20 +1,16 @@
-<div
-  class="card-wrapper"
-  *ngFor="let taskItem of taskItems; let i = index" 
-  draggable="true"
-  (dragstart)="onDragStart($event, taskItem.id, i)"
->
+<div class="card-wrapper" draggable="true" cdkDrag>
+  <!-- (dragstart)="onDragStart($event, taskItem.id, i)" -->
   <div class="card">
     <div class="card-content-wrapper">
       <div class="card-content">
-      <p>{{ taskItem.title }}</p>
-      <p>Priority - {{  taskItem.priority }}</p>
-    </div>
+        <p>{{ taskItem.title }}</p>
+        <p>Priority - {{ taskItem.priority }}</p>
+      </div>
       <img
         class="icon edit"
         src="assets/edit.svg"
         alt="icon"
-       (click)="editTask(taskItem)"
+        (click)="editTask(taskItem)"
       />
     </div>
   </div>

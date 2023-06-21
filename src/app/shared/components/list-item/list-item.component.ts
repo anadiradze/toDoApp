@@ -19,6 +19,7 @@ export class ListItemComponent implements OnInit {
 
   ngOnInit(): void {}
   @Input() taskItems: ITask[] | null = [];
+  @Input() taskItem!: ITask
 
   newStatusEnum = this.rotationService.newStatusEnum;
   inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
