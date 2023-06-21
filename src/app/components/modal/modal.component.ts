@@ -23,7 +23,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() set editTask(taskToEdit: ITask) {
     this.taskToEdit = taskToEdit;
     this.taskNameControl.patchValue(this.taskToEdit.title);
-    this.radioButtonsControl.patchValue(this.taskToEdit.priority);
+    this.radioButtonsControl.patchValue(Math.floor(this.taskToEdit.priority));
   }
 
   constructor(

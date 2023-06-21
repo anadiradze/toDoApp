@@ -17,10 +17,10 @@
   cursor: pointer;
   position: relative;
 }
-.card-content-wrapper{
+.card-content-wrapper {
   display: flex;
 }
-.card-content{
+.card-content {
   display: flex;
   flex-direction: column;
   margin: 0;

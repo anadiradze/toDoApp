@@ -13,9 +13,9 @@
         [title]="newStatusEnum"
         *ngIf="newTasks$ | async as newTasks"
         cdkDropList
-        id="newTasksList"
+        id="new"
         [cdkDropListData]="newTasks"
-        [cdkDropListConnectedTo]="['inProgressTasksList', 'doneTasksList']"
+        [cdkDropListConnectedTo]="['inProgress', 'done']"
         (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
@@ -30,9 +30,9 @@
         [title]="inProgressStatusEnum"
         *ngIf="inProgressTasks$ | async as inProgressTasks"
         cdkDropList
-        id="inProgressTasksList"
+        id="inProgress"
         [cdkDropListData]="inProgressTasks"
-        [cdkDropListConnectedTo]="['newTasksList', 'doneTasksList']"
+        [cdkDropListConnectedTo]="['new', 'done']"
         (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
@@ -47,9 +47,9 @@
         [title]="doneStatusEnum"
         *ngIf="doneTasks$ | async as doneTasks"
         cdkDropList
-        id="doneTasksList"
+        id="done"
         [cdkDropListData]="doneTasks"
-        [cdkDropListConnectedTo]="['newTasksList', 'inProgressTasksList']"
+        [cdkDropListConnectedTo]="['new', 'inProgress']"
         (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
@@ -62,10 +62,3 @@
     </div>
   </div>
 </div>
-
-<!-- (drop)="onDrop($event, newStatusEnum)"
-        (dragover)="onDragOver($event)" -->
-<!-- (drop)="onDrop($event, inProgressStatusEnum)"
-        (dragover)="onDragOver($event)" -->
-<!-- (drop)="onDrop($event, doneStatusEnum)"
-        (dragover)="onDragOver($event)" -->

@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TaskItems, ITask } from '../models/http-model.model';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpServiceService {
-  
   private refreshData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     true
   );
@@ -24,7 +24,14 @@ export class HttpServiceService {
   url = 'http://localhost:3004/tasks';
 
   getTasks(): Observable<ITask[]> {
-    return this.http.get<ITask[]>(this.url);
+    return this.http.get<ITask[]>(this.url) .pipe(
+      map((res) => {
+        res.sort((a, b) => {
+          return b.priority - a.priority;
+        });
+        return res; // Return the sorted array
+      })
+    ); 
   }
 
   getTaskById(id: number): Observable<ITask> {
@@ -42,15 +49,14 @@ export class HttpServiceService {
     const url = `${this.url}/${task.id}`;
     return this.http.put(url, task);
   }
-  changeStatus(task: ITask, newStatus: TaskItems): Observable<any> {
+  changeStatus(task: ITask, newStatus: TaskItems | string): Observable<any> {
     const url = `${this.url}/${task.id}`;
     const updatedTask = { ...task, status: newStatus };
     return this.http.put(url, updatedTask);
   }
-  changePriority(task: ITask, newPriority: TaskItems): Observable<any> {
+  changePriority(task: ITask, newPriority: number): Observable<any> {
     const url = `${this.url}/${task.id}`;
-    const updatedTask = { ...task, status: newPriority };
+    const updatedTask = { ...task, priority: newPriority };
     return this.http.put(url, updatedTask);
   }
-
 }

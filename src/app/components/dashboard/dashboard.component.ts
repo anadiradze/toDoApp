@@ -1,5 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, concatMap, filter, map, switchMap, tap } from 'rxjs';
+import {
+  Observable,
+  concatMap,
+  filter,
+  map,
+  mergeMap,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
@@ -53,34 +61,22 @@ export class DashboardComponent implements OnInit {
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
           (task) => task.status === TaskItems.New
-        )
-        // .sort((a, b) => {
-        //   return b.priority - a.priority;
-        // });
-      }),
-
+        );
+      })
     );
     this.inProgressTasks$ = this.allTasks$.pipe(
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
           (task) => task.status === TaskItems.InProgress
-        )
-        // .sort((a, b) => {
-        //   return b.priority - a.priority;
-        // });
-      }),
-    
+        );
+      })
     );
     this.doneTasks$ = this.allTasks$.pipe(
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
           (task) => task.status === TaskItems.Done
-        )
-        // .sort((a, b) => {
-        //   return b.priority - a.priority;
-        // });
-      }),
-
+        );
+      })
     );
   }
 
@@ -89,48 +85,52 @@ export class DashboardComponent implements OnInit {
     return this.modalService.showModal;
   }
 
-  //  changeStatus when drop task-item to the list-container
-  // onDrop(event: DragEvent, newStatus: TaskItems) {
-  //   event.preventDefault();
-  //   const id = +event.dataTransfer?.getData('id')!;
-  //   const index = +event.dataTransfer?.getData('index')!;
-
-  //   const $taskItem = this.httpService.getTaskById(id);
-  //   $taskItem
-  //     .pipe(
-  //       //filter((task: ITask) => task.status !== newStatus),
-  //       concatMap((task) => {
-  //         return this.httpService.changeStatus(task, newStatus);
-  //       }),
-  //       tap(() => {
-  //         this.httpService.refreshData = true;
-  //         console.log('index', index);
-  //       })
-  //     )
-  //     .subscribe((res) => {});
-  // }
-
-  // onDragOver(event: DragEvent) {
-  //   event.preventDefault();
-  // }
-
   drop(event: CdkDragDrop<ITask[]>) {
+    const draggedItem = event.container.data[event.previousIndex];
+    const targetPriority =
+      event.container.data[event.currentIndex].priority + 1.0001;
+    const draggedItemtoAnotherArr =
+      event.previousContainer.data[event.previousIndex];
+    const targetPriorityToAnotherArr =
+      event.container.data[event.currentIndex].priority + 1.0001;
+
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
+
+      this.httpService
+        .changePriority(draggedItem, targetPriority)
+        .subscribe(() => {
+          this.httpService.refreshData = true;
+        });
     } else {
+      console.log(event.container.element.nativeElement.id, 'event.container');
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-      console.log(event.container.data[event.currentIndex].priority,'currentIndex')
-      console.log(event.container.data[event.previousIndex].priority,'previousIndex')
 
+      this.httpService
+        .changeStatus(
+          draggedItemtoAnotherArr,
+          event.container.element.nativeElement.id
+        )
+        .pipe(
+          concatMap((task) => {
+            return this.httpService.changePriority(
+              task,
+              targetPriorityToAnotherArr
+            );
+          })
+        )
+        .subscribe(() => {
+          this.httpService.refreshData = true;
+        });
     }
   }
 

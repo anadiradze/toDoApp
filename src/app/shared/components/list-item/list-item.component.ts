@@ -19,7 +19,7 @@ export class ListItemComponent implements OnInit {
 
   ngOnInit(): void {}
   @Input() taskItems: ITask[] | null = [];
-  @Input() taskItem!: ITask
+  @Input() taskItem!: ITask;
 
   newStatusEnum = this.rotationService.newStatusEnum;
   inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
@@ -40,13 +40,12 @@ export class ListItemComponent implements OnInit {
     });
   }
 
-
   onDragStart(event: DragEvent, id: number | undefined, index: number) {
     event.dataTransfer?.setData('id', `${id}`);
     event.dataTransfer?.setData('index', `${index}`);
   }
 
-// Create eventemitter to emit the task object to modal component in order to change existing task.
+  // Create eventemitter to emit the task object to modal component in order to change existing task.
   @Output() moveTaskToDashboard: EventEmitter<ITask> =
     new EventEmitter<ITask>();
 
@@ -54,5 +53,8 @@ export class ListItemComponent implements OnInit {
     this.moveTaskToDashboard.emit(task);
     this.modalService.openModal();
     this.modalService.editModeisOn = true;
+  }
+  floorPriority(priority: number): number {
+    return Math.floor(priority);
   }
 }
