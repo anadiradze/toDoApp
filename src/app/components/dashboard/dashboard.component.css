@@ -10,10 +10,12 @@
 }
 
 .board-lists {
-  display: grid;
-  grid-auto-columns: 350px;
-  grid-auto-flow: column;
-  grid-gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  column-gap: 25px;
+  row-gap: 50px;
 }
 
 .newTask {
@@ -29,6 +31,7 @@ h1 {
   color: black;
 }
 .inputAndButton {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +40,7 @@ h1 {
 }
 
 .searchInput {
-  width: 900px;
+  width: 90%;
   height: 45px;
   border: 1px solid #d2d2d2;
   border-radius: 12px;
