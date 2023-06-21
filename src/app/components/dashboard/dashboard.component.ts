@@ -46,21 +46,27 @@ export class DashboardComponent implements OnInit {
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
           (task) => task.status === TaskItems.New
-        );
+        ).sort((a, b) => {
+          return b.priority - a.priority;
+        });
       })
     );
     this.inProgressTasks$ = this.allTasks$.pipe(
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
           (task) => task.status === TaskItems.InProgress
-        );
+        ).sort((a, b) => {
+          return b.priority - a.priority;
+        });
       })
     );
     this.doneTasks$ = this.allTasks$.pipe(
       map((AllTasksFromService: ITask[]) => {
         return AllTasksFromService.filter(
           (task) => task.status === TaskItems.Done
-        );
+        ).sort((a, b) => {
+          return b.priority - a.priority;
+        });
       })
     );
   }
@@ -73,18 +79,22 @@ export class DashboardComponent implements OnInit {
   //  changeStatus when drop task-item to the list-container
   onDrop(event: DragEvent, newStatus: TaskItems) {
     event.preventDefault();
-    this.httpService
-      .getTaskById(+event.dataTransfer?.getData('id')!)
+    const id = +event.dataTransfer?.getData('id')!;
+    const index = +event.dataTransfer?.getData('index')!;
+
+    const $taskItem = this.httpService.getTaskById(id);
+    $taskItem
       .pipe(
-        filter((task: ITask) => task.status !== newStatus),
+        //filter((task: ITask) => task.status !== newStatus),
         concatMap((task) => {
           return this.httpService.changeStatus(task, newStatus);
         }),
         tap(() => {
           this.httpService.refreshData = true;
+          console.log('index', index);
         })
       )
-      .subscribe();
+      .subscribe((res) => {});
   }
 
   onDragOver(event: DragEvent) {
@@ -97,6 +107,7 @@ export class DashboardComponent implements OnInit {
     this.task = {
       status: this.defaultStatusEnum,
       title: '',
+      priority: null!,
     };
     this.modalService.editModeisOn = false;
   }

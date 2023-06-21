@@ -40,8 +40,9 @@ export class ListItemComponent implements OnInit {
   }
 
 
-  onDragStart(event: DragEvent, id: number | undefined) {
+  onDragStart(event: DragEvent, id: number | undefined, index: number) {
     event.dataTransfer?.setData('id', `${id}`);
+    event.dataTransfer?.setData('index', `${index}`);
   }
 
 // Create eventemitter to emit the task object to modal component in order to change existing task.

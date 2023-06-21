@@ -38,15 +38,19 @@ export class HttpServiceService {
   deleteTask(id: number): Observable<ITask> {
     return this.http.delete<ITask>(`${this.url}/${id}`);
   }
-
+  UpdateTask(task: ITask): Observable<any> {
+    const url = `${this.url}/${task.id}`;
+    return this.http.put(url, task);
+  }
   changeStatus(task: ITask, newStatus: TaskItems): Observable<any> {
     const url = `${this.url}/${task.id}`;
     const updatedTask = { ...task, status: newStatus };
     return this.http.put(url, updatedTask);
   }
-
-  UpdateTask(task: ITask): Observable<any> {
+  changePriority(task: ITask, newPriority: TaskItems): Observable<any> {
     const url = `${this.url}/${task.id}`;
-    return this.http.put(url, task);
+    const updatedTask = { ...task, status: newPriority };
+    return this.http.put(url, updatedTask);
   }
+
 }

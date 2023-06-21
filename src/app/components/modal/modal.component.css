@@ -50,3 +50,18 @@ button:last-child {
   background-color: #fff;
   color: #0073ea;
 }
+.priorityForm {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+.prioritiesLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px
+}
+.prioritiesInput {
+  margin: 0;
+}

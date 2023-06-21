@@ -11,7 +11,7 @@
 
 .board-lists {
   display: grid;
-  grid-auto-columns: 300px;
+  grid-auto-columns: 350px;
   grid-auto-flow: column;
   grid-gap: 10px;
 }
@@ -37,8 +37,8 @@ h1 {
 }
 
 .searchInput {
-  width: 752.85px;
-  height: 50px;
+  width: 900px;
+  height: 45px;
   border: 1px solid #d2d2d2;
   border-radius: 12px;
 }

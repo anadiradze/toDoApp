@@ -1,14 +1,31 @@
 <div class="backdrop" (click)="closeModal()">
   <div class="modal" (click)="onModalClick($event)">
-    <h2> {{editModeisOn ? 'Edit Task' : "Add Task"}}</h2>
+    <h2>{{ editModeisOn ? "Edit Task" : "Add Task" }}</h2>
     <input
       type="text"
       placeholder="Enter task name"
       [formControl]="taskNameControl"
     />
+    <div class="priorityForm">
+      <p>Priorities:</p>
+      <label *ngFor="let priority of priorities" class="prioritiesLabel">
+        <input
+          type="radio"
+          [formControl]="radioButtonsControl"
+          [value]="priority"
+          class="prioritiesInput"
+        />
+        {{ priority }}
+      </label>
+    </div>
+
     <div class="modal-buttons">
-      <button *ngIf="!editModeisOn"(click)="addTask()">{{"Add Task"}}</button>
-      <button *ngIf="editModeisOn" (click)="updateTask()">{{'Save changes'}}</button>
+      <button *ngIf="!editModeisOn" (click)="addTask()">
+        {{ "Add Task" }}
+      </button>
+      <button *ngIf="editModeisOn" (click)="updateTask()">
+        {{ "Save changes" }}
+      </button>
       <button (click)="closeModal()">Cancel</button>
     </div>
   </div>
