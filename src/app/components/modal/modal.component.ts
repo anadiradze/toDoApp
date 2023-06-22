@@ -3,6 +3,7 @@ import { ModalServiceService } from 'src/app/shared/services/modal-service.servi
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { FormControl } from '@angular/forms';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-modal',
@@ -10,6 +11,7 @@ import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent implements OnInit, OnDestroy {
+  destroy$: Subject<boolean> = new Subject<boolean>();
   taskNameControl: FormControl = new FormControl('');
   radioButtonsControl: FormControl = new FormControl('');
 
@@ -29,7 +31,10 @@ export class ModalComponent implements OnInit, OnDestroy {
     private modalService: ModalServiceService,
     private httpService: HttpServiceService
   ) {}
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
   ngOnInit(): void {}
 
   // add task when user adds the task
@@ -39,9 +44,12 @@ export class ModalComponent implements OnInit, OnDestroy {
       status: TaskItems.New,
       priority: this.radioButtonsControl.value,
     };
-    this.httpService.addTask(task).subscribe(() => {
-      this.httpService.refreshData = true;
-    });
+    this.httpService
+      .addTask(task)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.httpService.refreshData = true;
+      });
     this.modalService.closeModal();
   }
 
@@ -53,6 +61,7 @@ export class ModalComponent implements OnInit, OnDestroy {
         title: this.taskNameControl.value,
         priority: this.radioButtonsControl.value,
       })
+      .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         this.httpService.refreshData = true;
         this.modalService.closeModal();

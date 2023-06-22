@@ -1,15 +1,24 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
 import { ModalServiceService } from '../../services/modal-service.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-list-item',
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.css'],
 })
-export class ListItemComponent implements OnInit {
+export class ListItemComponent implements OnInit, OnDestroy {
+  destroy$: Subject<boolean> = new Subject<boolean>();
   ellipsis: boolean = true;
 
   @Output() onEdit: EventEmitter<ITask> = new EventEmitter<ITask>();
@@ -18,6 +27,10 @@ export class ListItemComponent implements OnInit {
     private rotationService: RotationServiceService,
     private modalService: ModalServiceService
   ) {}
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 
   ngOnInit(): void {}
   @Input() taskItems: ITask[] | null = [];
@@ -28,18 +41,24 @@ export class ListItemComponent implements OnInit {
   doneStatusEnum = this.rotationService.doneStatusEnum;
 
   deleteTask(id: number) {
-    this.httpService.deleteTask(id).subscribe((res) => {
-      this.httpService.refreshData = true;
-    });
+    this.httpService
+      .deleteTask(id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => {
+        this.httpService.refreshData = true;
+      });
   }
 
   changeTaskStatus(targetTask: ITask, newStatus: TaskItems): void {
-    this.httpService.changeStatus(targetTask, newStatus).subscribe({
-      next: () => {
-        this.httpService.refreshData = true;
-      },
-      error: () => {},
-    });
+    this.httpService
+      .changeStatus(targetTask, newStatus)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: () => {
+          this.httpService.refreshData = true;
+        },
+        error: () => {},
+      });
   }
 
   onDragStart(event: DragEvent, id: number | undefined, index: number) {
@@ -58,6 +77,6 @@ export class ListItemComponent implements OnInit {
   }
 
   toggleEllipsisClass() {
-    this.ellipsis = !this.ellipsis
+    this.ellipsis = !this.ellipsis;
   }
 }

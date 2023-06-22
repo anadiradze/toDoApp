@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { concatMap, tap } from 'rxjs';
-import { HttpServiceService } from './http-service.service';
-import { TaskItems, ITask } from '../models/http-model.model';
+import { TaskItems } from '../models/http-model.model';
 
 @Injectable({
   providedIn: 'root',

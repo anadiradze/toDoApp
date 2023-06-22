@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, concatMap, map, switchMap } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  Observable,
+  Subject,
+  concatMap,
+  map,
+  switchMap,
+  takeUntil,
+} from 'rxjs';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
@@ -15,14 +22,18 @@ import {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
   task!: ITask;
-
+  destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     private modalService: ModalServiceService,
     private httpService: HttpServiceService,
     private rotationService: RotationServiceService
   ) {}
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
+  }
 
   defaultStatusEnum = this.rotationService.DefaultStatusEnum;
   newStatusEnum = this.rotationService.newStatusEnum;
@@ -79,9 +90,9 @@ export class DashboardComponent implements OnInit {
     const draggedItem = event.container.data[event.previousIndex];
     const targetPriority =
       event.container.data[event.currentIndex].priority + 1;
-    const draggedItemtoAnotherArr =
+    const anotherArrDraggedItem =
       event.previousContainer.data[event.previousIndex];
-    const targetPriorityToAnotherArr =
+    const anotherArrTargetPriority =
       event.container.data[event.currentIndex].priority + 1;
 
     if (event.previousContainer === event.container) {
@@ -91,37 +102,55 @@ export class DashboardComponent implements OnInit {
         event.currentIndex
       );
 
-      this.httpService
-        .changePriority(draggedItem, targetPriority)
-        .subscribe(() => {
-          this.httpService.refreshData = true;
-        });
+      this.sameArrayPriorityChange(draggedItem, targetPriority);
     } else {
-      console.log(event);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-
-      this.httpService
-        .changeStatus(
-          draggedItemtoAnotherArr,
-          event.container.element.nativeElement.id
-        )
-        .pipe(
-          concatMap((task) => {
-            return this.httpService.changePriority(
-              task,
-              targetPriorityToAnotherArr
-            );
-          })
-        )
-        .subscribe(() => {
-          this.httpService.refreshData = true;
-        });
+      this.otherArrayPriorityChange(
+        event,
+        anotherArrDraggedItem,
+        anotherArrTargetPriority
+      );
     }
+  }
+
+  //change the priority of dragged task onDrop in the same list task is located
+  sameArrayPriorityChange(draggedItem: ITask, targetPriority: number) {
+    this.httpService
+      .changePriority(draggedItem, targetPriority)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.httpService.refreshData = true;
+      });
+  }
+
+  //change the priority of dragged task onDrop in other list and change its status accordingly
+  otherArrayPriorityChange(
+    event: CdkDragDrop<ITask[]>,
+    anotherArrDraggedItem: ITask,
+    anotherArrTargetPriority: number
+  ) {
+    this.httpService
+      .changeStatus(
+        anotherArrDraggedItem,
+        event.container.element.nativeElement.id // id of list - (inprogress,done,new)
+      )
+      .pipe(
+        takeUntil(this.destroy$),
+        concatMap((task) => {
+          return this.httpService.changePriority(
+            task,
+            anotherArrTargetPriority
+          );
+        })
+      )
+      .subscribe(() => {
+        this.httpService.refreshData = true;
+      });
   }
 
   //clear the input value on addTask. E.x After user clicks edit task2 and then clicks addTask, input value still has task2 as a value. So it becomes clean after this operation.
