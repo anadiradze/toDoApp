@@ -1,4 +1,4 @@
-.card-wrapper {
+.card-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,17 +14,34 @@
   width: 265px;
   color: #526d82;
   border-bottom: none;
-  cursor: pointer;
   position: relative;
+  overflow: hidden;
 }
-.card-content-wrapper {
+.card-content-container {
   display: flex;
+  overflow: hidden;
 }
 .card-content {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
   margin: 0;
+  padding: 0 18px 0 5px;
+  width: 100%;
 }
+.taskTitle {
+  cursor: pointer;
+}
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+}
+.showAllText {
+  word-wrap: break-word;
+}
+
 .edit {
   position: absolute;
   top: 10px;

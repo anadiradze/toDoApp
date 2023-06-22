@@ -1,9 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
-import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-modal',

@@ -10,6 +10,8 @@ import { ModalServiceService } from '../../services/modal-service.service';
   styleUrls: ['./list-item.component.css'],
 })
 export class ListItemComponent implements OnInit {
+  ellipsis: boolean = true;
+
   @Output() onEdit: EventEmitter<ITask> = new EventEmitter<ITask>();
   constructor(
     private httpService: HttpServiceService,
@@ -54,7 +56,8 @@ export class ListItemComponent implements OnInit {
     this.modalService.openModal();
     this.modalService.editModeisOn = true;
   }
-  floorPriority(priority: number): number {
-    return Math.floor(priority);
+
+  toggleEllipsisClass() {
+    this.ellipsis = !this.ellipsis
   }
 }

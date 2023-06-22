@@ -1,10 +1,16 @@
-<div class="card-wrapper" draggable="true" cdkDrag>
-  <!-- (dragstart)="onDragStart($event, taskItem.id, i)" -->
+<div class="card-container" draggable="true" cdkDrag>
   <div class="card">
-    <div class="card-content-wrapper">
+    <div class="card-content-container">
       <div class="card-content">
-        <p>{{ taskItem.title }}</p>
-        <p>Priority - {{ floorPriority(taskItem.priority) }}</p>
+        <p
+          class="taskTitle"
+          [class.ellipsis]="ellipsis"
+          [class.showAllText]="!ellipsis"
+          (click)="toggleEllipsisClass()"
+        >
+          {{ taskItem.title }}
+        </p>
+        <p>Priority - {{ taskItem.priority }}</p>
       </div>
       <img
         class="icon edit"

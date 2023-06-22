@@ -1,13 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  Observable,
-  concatMap,
-  filter,
-  map,
-  mergeMap,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { Observable, concatMap, map, switchMap } from 'rxjs';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
@@ -16,8 +8,6 @@ import {
   CdkDragDrop,
   moveItemInArray,
   transferArrayItem,
-  CdkDrag,
-  CdkDropList,
 } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -84,15 +74,15 @@ export class DashboardComponent implements OnInit {
   isModalServiceVisible(): boolean {
     return this.modalService.showModal;
   }
-
+  // drop logic, when user drops task to another place priority changes according to its below/upper task priority.
   drop(event: CdkDragDrop<ITask[]>) {
     const draggedItem = event.container.data[event.previousIndex];
     const targetPriority =
-      event.container.data[event.currentIndex].priority + 1.0001;
+      event.container.data[event.currentIndex].priority + 1;
     const draggedItemtoAnotherArr =
       event.previousContainer.data[event.previousIndex];
     const targetPriorityToAnotherArr =
-      event.container.data[event.currentIndex].priority + 1.0001;
+      event.container.data[event.currentIndex].priority + 1;
 
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -107,7 +97,7 @@ export class DashboardComponent implements OnInit {
           this.httpService.refreshData = true;
         });
     } else {
-      console.log(event.container.element.nativeElement.id, 'event.container');
+      console.log(event);
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
