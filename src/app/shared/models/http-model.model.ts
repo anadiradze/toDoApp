@@ -1,8 +1,9 @@
 export interface ITask {
+  id?: number;
   title: string;
   status: TaskItems;
-  id?: number;
   priority: number;
+  description: string;
 }
 
 export enum TaskItems {

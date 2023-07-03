@@ -13,4 +13,6 @@ export class ModalServiceService {
   closeModal() {
     this.showModal = false;
   }
+
+  
 }

@@ -1,32 +1,61 @@
 <div class="backdrop" (click)="closeModal()">
   <div class="modal" (click)="onModalClick($event)">
-    <h2>{{ editModeisOn ? "Edit Task" : "Add Task" }}</h2>
-    <input
-      type="text"
-      placeholder="Enter task name"
-      [formControl]="taskNameControl"
-    />
-    <div class="priorityForm">
-      <p>Priorities:</p>
-      <label *ngFor="let priority of priorities" class="prioritiesLabel">
-        <input
-          type="radio"
-          [formControl]="radioButtonsControl"
-          [value]="priority"
-          class="prioritiesInput"
-        />
-        {{ priority }}
-      </label>
-    </div>
-
-    <div class="modal-buttons">
-      <button *ngIf="!editModeisOn" (click)="addTask()">
-        {{ "Add Task" }}
-      </button>
-      <button *ngIf="editModeisOn" (click)="updateTask()">
-        {{ "Save changes" }}
-      </button>
-      <button (click)="closeModal()">Cancel</button>
+    <h2
+    class="list-title"
+      [ngClass]="{
+        redTitleBackground: taskToEdit.status === newStatusEnum,
+        yellowTitleBackground: taskToEdit.status === inProgressStatusEnum,
+        greenTitleBackground: taskToEdit.status === doneStatusEnum,
+      }"
+    >
+      {{ editModeisOn ? "Edit Task" : "Add Task" }}
+    </h2>
+    <div [formGroup]="modalForm">
+      <input
+        type="text"
+        placeholder="Enter task name"
+        [formControl]="nameControl"
+      />
+      <input
+        type="text"
+        placeholder="Enter the description"
+        [formControl]="descriptionControl"
+      />
+      <div class="priorityForm">
+        <p>Priorities:</p>
+        <label *ngFor="let priority of priorities" class="prioritiesLabel">
+          <input
+            name="priority"
+            type="radio"
+            [formControl]="priorityControl"
+            [value]="priority"
+            class="prioritiesInput"
+          />
+          {{ priority }}
+        </label>
+      </div>
+      <div class="priorityForm">
+        <p>status:</p>
+        <label *ngFor="let status of statuses" class="prioritiesLabel">
+          <input
+            name="status"
+            type="radio"
+            [formControl]="statusControl"
+            [value]="status"
+            class="prioritiesInput"
+          />
+          {{ status }}
+        </label>
+      </div>
+      <div class="modal-buttons">
+        <button *ngIf="!editModeisOn" (click)="addTask()">
+          {{ "Add Task" }}
+        </button>
+        <button *ngIf="editModeisOn" (click)="updateTask()">
+          {{ "Save changes" }}
+        </button>
+        <button (click)="closeModal()">Cancel</button>
+      </div>
     </div>
   </div>
 </div>

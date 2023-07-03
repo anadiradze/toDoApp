@@ -16,8 +16,4 @@ export class ListContainerComponent implements OnInit {
   inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
   doneStatusEnum = this.rotationService.doneStatusEnum;
 
-  yellow: string = 'rgb(240, 175, 83)';
-  red: string = 'rgb(226, 68, 92)';
-  green: string = 'rgb(0, 200, 117)';
-  grey: string = 'rgb(196, 196, 196)';
 }

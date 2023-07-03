@@ -6,7 +6,7 @@
       <button class="newTask" (click)="openModalOnAddTask()">+ New Task</button>
     </div>
 
-    <app-modal *ngIf="isModalServiceVisible()" [editTask]="task"></app-modal>
+    <app-modal *ngIf="isModalServiceVisible()" [taskToEdit]="task"></app-modal>
 
     <div class="board-lists">
       <app-list-container

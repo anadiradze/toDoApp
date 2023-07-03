@@ -10,6 +10,13 @@
         >
           {{ taskItem.title }}
         </p>
+        <p
+          [class.ellipsis]="ellipsis"
+          [class.showAllText]="!ellipsis"
+          (click)="toggleEllipsisClass()"
+        >
+          {{ taskItem.description }}
+        </p>
         <p>Priority - {{ taskItem.priority }}</p>
       </div>
       <img

@@ -160,6 +160,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       status: this.defaultStatusEnum,
       title: '',
       priority: null!,
+      description: '',
     };
     this.modalService.editModeisOn = false;
   }
