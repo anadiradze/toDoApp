@@ -49,7 +49,7 @@
 
     <img
       class="icon"
-      src="assets/done.png"
+      src="assets/done.svg"
       alt="icon"
       (click)="changeTaskStatus(taskItem, doneStatusEnum)"
       [ngClass]="{ 'display-none': taskItem.status === doneStatusEnum }"
@@ -57,7 +57,7 @@
 
     <img
       class="icon"
-      src="assets/bin.png"
+      src="assets/bin.svg"
       alt="icon"
       (click)="deleteTask(taskItem.id)"
     />
