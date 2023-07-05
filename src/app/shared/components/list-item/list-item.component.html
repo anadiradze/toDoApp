@@ -4,14 +4,14 @@
       <div class="card-content">
         <p
           class="taskTitle"
-          [class.ellipsis]="ellipsis"
+          [class.ellipsis-title]="ellipsis"
           [class.showAllText]="!ellipsis"
           (click)="toggleEllipsisClass()"
         >
           {{ taskItem.title }}
         </p>
         <p
-          [class.ellipsis]="ellipsis"
+          [class.ellipsis-descriprion]="ellipsis"
           [class.showAllText]="!ellipsis"
           (click)="toggleEllipsisClass()"
         >

@@ -6,19 +6,20 @@
         redTitleBackground: taskToEdit.status === newStatusEnum,
         yellowTitleBackground: taskToEdit.status === inProgressStatusEnum,
         greenTitleBackground: taskToEdit.status === doneStatusEnum,
+        blueTitleBackground: !editModeisOn
       }"
     >
       {{ editModeisOn ? "Edit Task" : "Add Task" }}
     </h2>
     <div [formGroup]="modalForm" class="title-input">
       <input
-        [ngClass]="nameControl.value.length > 100 ? 'error' : ''"
+        [ngClass]="nameControl.value.length > maxNumOfCharacters ? 'error' : ''"
         type="text"
         placeholder="Enter task name"
         [formControl]="nameControl"
       />
       <span class="char-control">
-        {{ 100 - nameControl.value.length }}
+        {{ maxNumOfCharacters - nameControl.value.length }}
       </span>
       <input
         type="text"
@@ -55,7 +56,11 @@
         <button *ngIf="!editModeisOn" (click)="addTask()">
           {{ "Add Task" }}
         </button>
-        <button *ngIf="editModeisOn" (click)="updateTask()" [disabled]="!modalForm.valid">
+        <button
+          *ngIf="editModeisOn"
+          (click)="updateTask()"
+          [disabled]="!modalForm.valid"
+        >
           {{ "Save changes" }}
         </button>
         <button (click)="closeModal()">Cancel</button>

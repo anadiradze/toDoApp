@@ -31,12 +31,19 @@
 }
 .taskTitle {
   cursor: pointer;
-} 
-.ellipsis {
-/*   max-width: 50ch;
- */  white-space: nowrap;
+}
+.ellipsis-title {
+  max-width: 70ch;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.ellipsis-descriprion {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .showAllText {
   word-wrap: break-word;

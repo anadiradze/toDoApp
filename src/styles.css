@@ -29,6 +29,9 @@ body {
 .greenTitleBackground {
   background-color: rgb(0, 200, 117);
 }
+.blueTitleBackground {
+  background-color: #0073ea;
+}
 .list-title {
   font-weight: bold;
   color: white;

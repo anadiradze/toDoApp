@@ -24,14 +24,13 @@ h2 {
 }
 
 input {
-  width: 95%;
+  width: 100%;
   padding: 10px;
   margin-bottom: 10px;
+  outline: none;
   padding-right: 50px;
   box-sizing: border-box;
-  outline: none;
 }
-
 
 .modal-buttons {
   display: flex;
@@ -82,4 +81,10 @@ button:last-child {
 }
 input.error + .char-control {
   color: red;
+}
+.list-title-white {
+  color: white;
+}
+.list-title-black {
+  color: black;
 }

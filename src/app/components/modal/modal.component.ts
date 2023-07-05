@@ -16,7 +16,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
   modalForm!: FormGroup;
   editModeisOn = this.modalService.editModeisOn;
-
+  maxNumOfCharacters: number = 70;
   //priorities
   priorities: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   statuses: TaskItems[] = [TaskItems.New, TaskItems.InProgress, TaskItems.Done];
@@ -36,7 +36,10 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   initModalForm() {
     this.modalForm = new FormGroup({
-      name: new FormControl(this.taskToEdit?.title, [Validators.required, Validators.maxLength(100)]),
+      name: new FormControl(this.taskToEdit?.title, [
+        Validators.required,
+        Validators.maxLength(100),
+      ]),
       priority: new FormControl(this.taskToEdit?.priority),
       status: new FormControl(this.taskToEdit?.status),
       description: new FormControl(this.taskToEdit?.description),
@@ -69,8 +72,8 @@ export class ModalComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         this.httpService.refreshData = true;
+        this.modalService.closeModal();
       });
-    this.modalService.closeModal();
   }
 
   // update task when user edits the task
