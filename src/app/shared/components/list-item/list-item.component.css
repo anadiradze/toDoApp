@@ -67,8 +67,14 @@
 }
 
 .icon {
-  max-width: 32px;
+  max-width: 25px;
 }
 .display-none {
   display: none;
+}
+.iconDesign {
+  width: 25px;
+  border-radius: 50%;
+  background-color: rgb(226, 68, 92);
+  border: none;
 }

@@ -2,37 +2,37 @@
   "tasks": [
     {
       "title": "Task 1 - new ",
-      "status": "new",
+      "status": "inProgress",
       "id": 1,
       "priority": 11,
       "description": "lorem ipsum dolor sit amet"
     },
     {
       "title": "Task 2 -new",
-      "status": "inProgress",
+      "status": "new",
       "id": 2,
       "priority": 6,
       "description": "lorem ipsum dolor sit amet"
     },
     {
       "title": "Task 3  - new",
-      "status": "inProgress",
+      "status": "new",
       "id": 3,
       "priority": 6,
       "description": "lorem ipsum dolor sit amet"
     },
     {
       "title": "Task 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - new",
-      "status": "inProgress",
+      "status": "done",
       "id": 4,
-      "priority": 11,
+      "priority": 3,
       "description": "lorem ipsum dolor sit amettttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
     },
     {
       "title": "Task 5  - newksadasdkalskasjdlkasjlkdjaslkjdlkassajdlkasjdaslk",
-      "status": "new",
+      "status": "inProgress",
       "id": 5,
-      "priority": 12,
+      "priority": 2,
       "description": "lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit amet"
     },
     {
@@ -73,7 +73,7 @@
     {
       "id": 11,
       "title": "Task 1 - inProgress",
-      "status": "inProgress",
+      "status": "new",
       "priority": 5,
       "description": "lorem ipsum dolor sit amet"
     },
@@ -156,7 +156,7 @@
     },
     {
       "title": "chhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
-      "status": "inProgress",
+      "status": "new",
       "priority": 5,
       "id": 23,
       "description": "lorem ipsum dolor sit amet"
@@ -184,7 +184,7 @@
     },
     {
       "title": "Anobano",
-      "status": "done",
+      "status": "new",
       "priority": 9,
       "description": "task 111222",
       "id": 27

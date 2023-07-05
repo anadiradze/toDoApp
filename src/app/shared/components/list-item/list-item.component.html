@@ -32,6 +32,8 @@
     *ngIf="taskItem && taskItem.id && taskItem.status"
   >
     <img
+      mat-raised-button
+      matTooltip
       class="icon"
       src="assets/new.png"
       alt="icon"
@@ -46,10 +48,18 @@
       (click)="changeTaskStatus(taskItem, inProgressStatusEnum)"
       [ngClass]="{ 'display-none': taskItem.status === inProgressStatusEnum }"
     />
+    <!--    
+      <button
+      mat-raised-button
+      matTooltip="Info about the action"
+      aria-label="Button that displays a tooltip when focused or hovered over"
+      class="iconDesign"
+    >
+    </button> -->
 
     <img
       class="icon"
-      src="assets/done.svg"
+      src="assets/done.png"
       alt="icon"
       (click)="changeTaskStatus(taskItem, doneStatusEnum)"
       [ngClass]="{ 'display-none': taskItem.status === doneStatusEnum }"
