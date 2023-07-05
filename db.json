@@ -4,7 +4,7 @@
       "title": "Task 1 - new ",
       "status": "new",
       "id": 1,
-      "priority": 7,
+      "priority": 10,
       "description": "lorem ipsum dolor sit amet"
     },
     {
@@ -22,24 +22,24 @@
       "description": "lorem ipsum dolor sit amet"
     },
     {
-      "title": "Task 4  - new",
+      "title": "Task 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - newTask 4  - new",
       "status": "inProgress",
       "id": 4,
-      "priority": 7,
-      "description": "lorem ipsum dolor sit amettttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
+      "priority": 11,
+      "description": "lorem ipsum dolor sit amettttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt"
     },
     {
-      "title": "Task 5  - new",
+      "title": "Task 5  - newksadasdkalsjdlkasjdlkasjlkdasjlkdajljsalkdjalksjdlkasjdlkasjlkdjaslkjdlkassajdlkasjdaslk",
       "status": "inProgress",
       "id": 5,
       "priority": 8,
-      "description": "lorem ipsum dolor sit amet"
+      "description": "lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit amet"
     },
     {
-      "title": "Task 6  - new",
-      "status": "new",
+      "title": "Task 6  - newTask 6  - newTask 6  - newTask 6  - newTask 6  - newTask 6  - newTask 6  - newTask 6  - newTask 6  - new",
+      "status": "done",
       "id": 6,
-      "priority": 9,
+      "priority": 7,
       "description": "lorem ipsum dolor sit amet"
     },
     {

@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { Subject, takeUntil } from 'rxjs';
 import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
@@ -36,7 +36,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   initModalForm() {
     this.modalForm = new FormGroup({
-      name: new FormControl(this.taskToEdit?.title),
+      name: new FormControl(this.taskToEdit?.title, [Validators.required, Validators.maxLength(100)]),
       priority: new FormControl(this.taskToEdit?.priority),
       status: new FormControl(this.taskToEdit?.status),
       description: new FormControl(this.taskToEdit?.description),

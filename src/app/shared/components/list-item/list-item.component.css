@@ -31,12 +31,12 @@
 }
 .taskTitle {
   cursor: pointer;
-}
+} 
 .ellipsis {
-  white-space: nowrap;
+/*   max-width: 50ch;
+ */  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 90%;
 }
 .showAllText {
   word-wrap: break-word;
