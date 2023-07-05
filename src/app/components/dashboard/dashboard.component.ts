@@ -51,9 +51,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getTasks() {
-    this.allTasks$ = this.httpService.isDataChanged$.pipe(
+    this.allTasks$ = this.rotationService.isDataChanged$.pipe(
       switchMap((res) => {
-        return this.httpService.getTasks();
+        return this.rotationService.getTasks();
       })
     );
 
@@ -124,7 +124,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .changePriority(draggedItem, targetPriority)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.httpService.refreshData = true;
+        this.rotationService.refreshData = true;
       });
   }
 
@@ -149,7 +149,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe(() => {
-        this.httpService.refreshData = true;
+        this.rotationService.refreshData = true;
       });
   }
 

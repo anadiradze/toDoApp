@@ -71,7 +71,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       .addTask(task)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.httpService.refreshData = true;
+        this.rotationService.refreshData = true;
         this.modalService.closeModal();
       });
   }
@@ -88,7 +88,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       })
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.httpService.refreshData = true;
+        this.rotationService.refreshData = true;
         this.modalService.closeModal();
       });
   }

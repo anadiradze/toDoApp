@@ -45,7 +45,7 @@ export class ListItemComponent implements OnInit, OnDestroy {
       .deleteTask(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
-        this.httpService.refreshData = true;
+        this.rotationService.refreshData = true;
       });
   }
 
@@ -55,7 +55,7 @@ export class ListItemComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
-          this.httpService.refreshData = true;
+          this.rotationService.refreshData = true;
         },
         error: () => {},
       });
