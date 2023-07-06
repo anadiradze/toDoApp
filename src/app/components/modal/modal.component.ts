@@ -4,7 +4,7 @@ import { HttpServiceService } from 'src/app/shared/services/http-service.service
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { Subject, takeUntil } from 'rxjs';
-import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
+import { ChangesServiceService } from 'src/app/shared/services/changes-service.service';
 
 @Component({
   selector: 'app-modal',
@@ -29,14 +29,14 @@ export class ModalComponent implements OnInit, OnDestroy {
   statuses: TaskItems[] = [TaskItems.New, TaskItems.InProgress, TaskItems.Done];
 
   //task status enums
-  newStatusEnum = this.rotationService.newStatusEnum;
-  inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
-  doneStatusEnum = this.rotationService.doneStatusEnum;
+  newStatusEnum = this.changesService.newStatusEnum;
+  inProgressStatusEnum = this.changesService.inProgressStatusEnum;
+  doneStatusEnum = this.changesService.doneStatusEnum;
 
   constructor(
     private modalService: ModalServiceService,
     private httpService: HttpServiceService,
-    private rotationService: RotationServiceService
+    private changesService: ChangesServiceService
   ) {}
   ngOnDestroy(): void {
     this.destroy$.next(true);
@@ -83,14 +83,14 @@ export class ModalComponent implements OnInit, OnDestroy {
       .addTask(task)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.rotationService.refreshData = true;
+        this.changesService.refreshData = true;
         this.modalService.closeModal();
       });
   }
 
   // update task when user edits the task
   updateTask() {
-    this.httpService
+    this.changesService
       .UpdateTask({
         ...this.taskToEdit,
         title: this.nameControl.value,
@@ -100,7 +100,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       })
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.rotationService.refreshData = true;
+        this.changesService.refreshData = true;
         this.modalService.closeModal();
       });
   }

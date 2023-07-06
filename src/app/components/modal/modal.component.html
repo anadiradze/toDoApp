@@ -4,7 +4,7 @@
     class="icon"
     [src]="getIconSource(taskToEdit, 'Left')"
     alt="icon"
-    (click)="nextTask($event)"
+    (click,keyUp)="nextTask($event)"
   />
 
   <div class="modal" (click)="onModalClick($event)">

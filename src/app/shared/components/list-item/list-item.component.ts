@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
-import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
+import { ChangesServiceService } from 'src/app/shared/services/changes-service.service';
 import { ModalServiceService } from '../../services/modal-service.service';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -25,7 +25,7 @@ export class ListItemComponent implements OnInit, OnDestroy {
   @Output() onEdit: EventEmitter<ITask> = new EventEmitter<ITask>();
   constructor(
     private httpService: HttpServiceService,
-    private rotationService: RotationServiceService,
+    private changesService: ChangesServiceService,
     private modalService: ModalServiceService
   ) {}
   ngOnDestroy(): void {
@@ -37,26 +37,26 @@ export class ListItemComponent implements OnInit, OnDestroy {
   @Input() taskItems: ITask[] | null = [];
   @Input() taskItem!: ITask;
 
-  newStatusEnum = this.rotationService.newStatusEnum;
-  inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
-  doneStatusEnum = this.rotationService.doneStatusEnum;
+  newStatusEnum = this.changesService.newStatusEnum;
+  inProgressStatusEnum = this.changesService.inProgressStatusEnum;
+  doneStatusEnum = this.changesService.doneStatusEnum;
 
   deleteTask(id: number) {
     this.httpService
       .deleteTask(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
-        this.rotationService.refreshData = true;
+        this.changesService.refreshData = true;
       });
   }
 
   changeTaskStatus(targetTask: ITask, newStatus: TaskItems): void {
-    this.httpService
+    this.changesService
       .changeStatus(targetTask, newStatus)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: () => {
-          this.rotationService.refreshData = true;
+          this.changesService.refreshData = true;
         },
         error: () => {},
       });

@@ -10,7 +10,7 @@ import {
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
-import { RotationServiceService } from 'src/app/shared/services/rotation-service.service';
+import { ChangesServiceService } from 'src/app/shared/services/changes-service.service';
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -28,17 +28,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
   constructor(
     private modalService: ModalServiceService,
     private httpService: HttpServiceService,
-    private rotationService: RotationServiceService
+    private changesService: ChangesServiceService
   ) {}
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
 
-  defaultStatusEnum = this.rotationService.DefaultStatusEnum;
-  newStatusEnum = this.rotationService.newStatusEnum;
-  inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
-  doneStatusEnum = this.rotationService.doneStatusEnum;
+  defaultStatusEnum = this.changesService.DefaultStatusEnum;
+  newStatusEnum = this.changesService.newStatusEnum;
+  inProgressStatusEnum = this.changesService.inProgressStatusEnum;
+  doneStatusEnum = this.changesService.doneStatusEnum;
 
   allTasks$!: Observable<ITask[]>;
   newTasks$!: Observable<ITask[]>;
@@ -51,9 +51,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   getTasks() {
-    this.allTasks$ = this.rotationService.isDataChanged$.pipe(
+    this.allTasks$ = this.changesService.isDataChanged$.pipe(
       switchMap((res) => {
-        return this.rotationService.getTasks();
+        return this.changesService.getTasks();
       })
     );
 
@@ -120,11 +120,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   //change the priority of dragged task onDrop in the same list task is located
   sameArrayPriorityChange(draggedItem: ITask, targetPriority: number) {
-    this.httpService
+    this.changesService
       .changePriority(draggedItem, targetPriority)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.rotationService.refreshData = true;
+        this.changesService.refreshData = true;
       });
   }
 
@@ -134,7 +134,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     anotherArrDraggedItem: ITask,
     anotherArrTargetPriority: number
   ) {
-    this.httpService
+    this.changesService
       .changeStatus(
         anotherArrDraggedItem,
         event.container.element.nativeElement.id // id of list - (inprogress,done,new)
@@ -142,14 +142,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$),
         concatMap((task) => {
-          return this.httpService.changePriority(
+          return this.changesService.changePriority(
             task,
             anotherArrTargetPriority
           );
         })
       )
       .subscribe(() => {
-        this.rotationService.refreshData = true;
+        this.changesService.refreshData = true;
       });
   }
 

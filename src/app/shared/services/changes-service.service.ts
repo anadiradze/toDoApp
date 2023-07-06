@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { TaskItems } from '../models/http-model.model';
+import { ITask, TaskItems } from '../models/http-model.model';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 import { HttpServiceService } from './http-service.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RotationServiceService {
-  constructor(private httpService: HttpServiceService) {}
-
+export class ChangesServiceService {
+  constructor(
+    private httpService: HttpServiceService,
+    private http: HttpClient
+  ) {}
+  url = this.httpService.url;
   private refreshData$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     true
   );
@@ -30,6 +34,20 @@ export class RotationServiceService {
         return res; // Return the sorted array
       })
     );
+  }
+  UpdateTask(task: ITask): Observable<any> {
+    const url = `${this.url}/${task.id}`;
+    return this.http.put(url, task);
+  }
+  changeStatus(task: ITask, newStatus: TaskItems | string): Observable<any> {
+    const url = `${this.url}/${task.id}`;
+    const updatedTask = { ...task, status: newStatus };
+    return this.http.put(url, updatedTask);
+  }
+  changePriority(task: ITask, newPriority: number): Observable<any> {
+    const url = `${this.url}/${task.id}`;
+    const updatedTask = { ...task, priority: newPriority };
+    return this.http.put(url, updatedTask);
   }
   
   DefaultStatusEnum: TaskItems = TaskItems.Default;
