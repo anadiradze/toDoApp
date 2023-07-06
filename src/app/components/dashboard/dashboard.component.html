@@ -19,8 +19,10 @@
         (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
-          *ngFor="let taskItem of newTasks"
+          *ngFor="let taskItem of newTasks let i = index"
           [taskItem]="taskItem"
+          [newTasks]="newTasks"
+          [index] ="i"
           (moveTaskToDashboard)="receiveTaskInDashboard($event)"
           cdkDrag
         ></app-list-item>
@@ -36,8 +38,10 @@
         (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
-          *ngFor="let taskItem of inProgressTasks"
+          *ngFor="let taskItem of inProgressTasks let i = index"
           [taskItem]="taskItem"
+          [newTasks]="inProgressTasks"
+          [index] ="i"
           (moveTaskToDashboard)="receiveTaskInDashboard($event)"
           cdkDrag
         ></app-list-item>
@@ -53,8 +57,10 @@
         (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
-          *ngFor="let taskItem of doneTasks"
+          *ngFor="let taskItem of doneTasks let i = index"
           [taskItem]="taskItem"
+          [newTasks]="doneTasks"
+          [index] ="i"
           (moveTaskToDashboard)="receiveTaskInDashboard($event)"
           cdkDrag
         ></app-list-item>

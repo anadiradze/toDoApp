@@ -1,4 +1,12 @@
 <div class="backdrop" (click)="closeModal()">
+  <img
+    *ngIf="editModeisOn"
+    class="icon"
+    [src]="getIconSource(taskToEdit, 'Left')"
+    alt="icon"
+    (click)="nextTask($event)"
+  />
+
   <div class="modal" (click)="onModalClick($event)">
     <h2
       class="list-title"
@@ -11,6 +19,7 @@
     >
       {{ editModeisOn ? "Edit Task" : "Add Task" }}
     </h2>
+
     <div [formGroup]="modalForm" class="title-input">
       <input
         [ngClass]="nameControl.value.length > maxNumOfCharacters ? 'error' : ''"
@@ -67,4 +76,11 @@
       </div>
     </div>
   </div>
+  <img
+    *ngIf="editModeisOn"
+    class="icon"
+    [src]="getIconSource(taskToEdit, 'Right')"
+    alt="icon"
+    (click)="previousTask($event)"
+  />
 </div>

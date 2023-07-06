@@ -12,14 +12,26 @@ import { RotationServiceService } from 'src/app/shared/services/rotation-service
   styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent implements OnInit, OnDestroy {
-  @Input() taskToEdit!: ITask;
   destroy$: Subject<boolean> = new Subject<boolean>();
+
   modalForm!: FormGroup;
+  @Input() taskToEdit!: ITask;
   editModeisOn = this.modalService.editModeisOn;
+
   maxNumOfCharacters: number = 70;
+
+  //modalService
+  index: number = this.modalService.index;
+  length: number = this.modalService.tasks.length;
+
   //priorities
   priorities: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   statuses: TaskItems[] = [TaskItems.New, TaskItems.InProgress, TaskItems.Done];
+
+  //task status enums
+  newStatusEnum = this.rotationService.newStatusEnum;
+  inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
+  doneStatusEnum = this.rotationService.doneStatusEnum;
 
   constructor(
     private modalService: ModalServiceService,
@@ -93,15 +105,43 @@ export class ModalComponent implements OnInit, OnDestroy {
       });
   }
 
+  // get to the next/previous task in edit mode
+  previousTask(event: Event) {
+    if (this.index + 1 === this.length) {
+      this.index = -1;
+    }
+    this.taskToEdit = this.modalService.tasks[(this.index += 1)];
+    this.initModalForm();
+    event.stopPropagation();
+  }
+
+  nextTask(event: Event) {
+    if (this.index - 1 < 0) {
+      this.index = this.length;
+    }
+    this.taskToEdit = this.modalService.tasks[(this.index -= 1)];
+    this.initModalForm();
+    event.stopPropagation();
+  }
+
+  // change icon colors according to task list
+  getIconSource(taskToEdit: ITask, side: string): string {
+    return taskToEdit.status === this.newStatusEnum
+      ? `../../../assets/red${side}.png`
+      : taskToEdit.status === this.inProgressStatusEnum
+      ? `../../../assets/yellow${side}.png`
+      : taskToEdit.status === this.doneStatusEnum
+      ? `../../../assets/green${side}.png`
+      : '';
+  }
+
   //prevent event bubbling - when user clicks backdrop modal closes, when user clicks on the modal itself, modal is still open
   onModalClick(event: MouseEvent) {
     event.stopPropagation();
   }
+
   //close the modal on backdrop click and on cancel click
   closeModal() {
     this.modalService.closeModal();
   }
-  newStatusEnum = this.rotationService.newStatusEnum;
-  inProgressStatusEnum = this.rotationService.inProgressStatusEnum;
-  doneStatusEnum = this.rotationService.doneStatusEnum;
 }

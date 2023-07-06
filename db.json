@@ -2,10 +2,10 @@
   "tasks": [
     {
       "title": "Task 1 - new ",
-      "status": "inProgress",
+      "status": "done",
       "id": 1,
       "priority": 11,
-      "description": "lorem ipsum dolor sit amet"
+      "description": "lorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit ametlorem ipsum dolor sit amet"
     },
     {
       "title": "Task 2 -new",
@@ -78,13 +78,6 @@
       "description": "lorem ipsum dolor sit amet"
     },
     {
-      "id": 12,
-      "title": "Task 2 - inProgress",
-      "status": "inProgress",
-      "priority": 4,
-      "description": "lorem ipsum dolor sit amet"
-    },
-    {
       "title": "Task 3 - inProgress",
       "status": "inProgress",
       "id": 13,
@@ -144,7 +137,7 @@
       "id": 20,
       "title": "Task 4 - done",
       "status": "done",
-      "priority": 2,
+      "priority": 5,
       "description": "lorem ipsum dolor sit amet"
     },
     {
@@ -162,24 +155,24 @@
       "description": "lorem ipsum dolor sit amet"
     },
     {
-      "title": "Ano",
-      "status": "new",
+      "title": "Anoasasd",
+      "status": "done",
       "priority": 10,
       "description": "ano's task",
       "id": 24
     },
     {
       "title": "ააააააააააააააააააააააააა",
-      "status": "new",
-      "priority": 10,
+      "status": "inProgress",
+      "priority": 5,
       "description": "123",
       "id": 25
     },
     {
-      "title": "ანჩიტო",
-      "status": "new",
-      "priority": 10,
-      "description": "",
+      "title": "ანჩიტოerdtfgyhu",
+      "status": "inProgress",
+      "priority": 3,
+      "description": "ewrdtfgyh",
       "id": 26
     },
     {
@@ -202,6 +195,20 @@
       "priority": 10,
       "description": "jhgf",
       "id": 29
+    },
+    {
+      "title": "aNO",
+      "status": "new",
+      "priority": 7,
+      "description": "BANO",
+      "id": 30
+    },
+    {
+      "title": "ANO",
+      "status": "done",
+      "priority": 5,
+      "description": "bano",
+      "id": 31
     }
   ]
 }

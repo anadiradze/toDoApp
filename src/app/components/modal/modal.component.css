@@ -12,6 +12,7 @@
 }
 
 .modal {
+  position: relative;
   background-color: #fff;
   padding: 20px;
   width: 500px;
@@ -82,9 +83,7 @@ button:last-child {
 input.error + .char-control {
   color: red;
 }
-.list-title-white {
-  color: white;
-}
-.list-title-black {
-  color: black;
+.icon{
+  width: 60px;
+  margin: 20px;
 }
