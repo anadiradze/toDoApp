@@ -78,3 +78,6 @@
   background-color: rgb(226, 68, 92);
   border: none;
 }
+.attachedImg{
+  max-width: 300px;
+}

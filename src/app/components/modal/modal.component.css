@@ -87,3 +87,6 @@ input.error + .char-control {
   width: 60px;
   margin: 20px;
 }
+.attachedImg{
+  max-width: 500px;
+}

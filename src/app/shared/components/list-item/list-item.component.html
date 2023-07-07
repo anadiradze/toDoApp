@@ -18,7 +18,9 @@
           {{ taskItem.description }}
         </p>
         <p>Priority - {{ taskItem.priority }}</p>
-        <img [src]="taskItem.image" alt="">
+        <div *ngIf="taskItem.image">
+          <img class="attachedImg" [src]="taskItem.image" alt="img" />
+        </div>
       </div>
       <img
         class="icon edit"

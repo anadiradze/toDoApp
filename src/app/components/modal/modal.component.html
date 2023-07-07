@@ -63,10 +63,10 @@
       </div>
 
       <input type="file" (change)="onFileSelected($event)" accept=".jpg,.png" />
-<!--       <div *ngIf="imageSrc">
- -->        <img [src]="imageSrc" alt="Base64 Image" />
-<!--       </div>
- -->      <div class="modal-buttons">
+      <div *ngIf="imageSrc" >
+        <img [src]="imageSrc" alt="Base64 Image"class="attachedImg" />
+      </div>
+      <div class="modal-buttons">
         <button *ngIf="!editModeisOn" (click)="addTask()">
           {{ "Add Task" }}
         </button>

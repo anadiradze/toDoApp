@@ -35,6 +35,11 @@ export class ModalComponent implements OnInit, OnDestroy {
   inProgressStatusEnum = this.changesService.inProgressStatusEnum;
   doneStatusEnum = this.changesService.doneStatusEnum;
 
+//attach image
+  selectedFile!: File;
+  base64String!: string;
+  imageSrc!: SafeUrl | undefined;
+
   constructor(
     private modalService: ModalServiceService,
     private httpService: HttpServiceService,
@@ -48,8 +53,8 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.initModalForm();
-    if(this.editModeisOn){
-      this.imageSrc = this.taskToEdit.image
+    if (this.editModeisOn) {
+      this.imageSrc = this.taskToEdit.image;
     }
   }
 
@@ -92,7 +97,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       .subscribe((responseTask) => {
         this.changesService.refreshData = true;
         this.postImage(responseTask);
-         this.modalService.closeModal();
+        this.modalService.closeModal();
       });
   }
 
@@ -105,14 +110,14 @@ export class ModalComponent implements OnInit, OnDestroy {
         priority: this.priorityControl.value,
         status: this.statusControl.value,
         description: this.descriptionControl.value,
-        image: this.imageSrc
+        image: this.imageSrc,
       })
-      
+
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         this.changesService.refreshData = true;
         this.postImage(this.taskToEdit);
-         this.modalService.closeModal();
+        this.modalService.closeModal();
       });
   }
 
@@ -146,14 +151,11 @@ export class ModalComponent implements OnInit, OnDestroy {
       : '';
   }
 
-  selectedFile!: File;
-  base64String!: string;
-  imageSrc!: any;
+  
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
     this.convertToBase64();
-    console.log(this.selectedFile, ' this.selectedFile');
   }
 
   convertToBase64() {
@@ -164,7 +166,6 @@ export class ModalComponent implements OnInit, OnDestroy {
         this.imageSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
           e.target.result
         );
-        console.log('this.base64String', this.base64String); // You can access the base64 string here
       };
       reader.readAsDataURL(this.selectedFile);
     }
@@ -173,7 +174,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   postImage(task: ITask) {
     this.imageUploadService.postImage(task, this.base64String).subscribe();
   }
-
 
   //prevent event bubbling - when user clicks backdrop modal closes, when user clicks on the modal itself, modal is still open
   onModalClick(event: MouseEvent) {
