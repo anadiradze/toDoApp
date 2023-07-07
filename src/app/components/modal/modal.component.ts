@@ -5,6 +5,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
 import { Subject, takeUntil } from 'rxjs';
 import { ChangesServiceService } from 'src/app/shared/services/changes-service.service';
+import { ImageUploadServiceService } from 'src/app/shared/services/image-upload-service.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-modal',
@@ -22,7 +24,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   //modalService
   index: number = this.modalService.index;
-  length: number = this.modalService.tasks.length;
+  length: number = this.modalService.tasks?.length;
 
   //priorities
   priorities: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -36,7 +38,9 @@ export class ModalComponent implements OnInit, OnDestroy {
   constructor(
     private modalService: ModalServiceService,
     private httpService: HttpServiceService,
-    private changesService: ChangesServiceService
+    private changesService: ChangesServiceService,
+    private imageUploadService: ImageUploadServiceService,
+    private sanitizer: DomSanitizer
   ) {}
   ngOnDestroy(): void {
     this.destroy$.next(true);
@@ -44,6 +48,9 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.initModalForm();
+    if(this.editModeisOn){
+      this.imageSrc = this.taskToEdit.image
+    }
   }
 
   initModalForm() {
@@ -82,9 +89,10 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.httpService
       .addTask(task)
       .pipe(takeUntil(this.destroy$))
-      .subscribe(() => {
+      .subscribe((responseTask) => {
         this.changesService.refreshData = true;
-        this.modalService.closeModal();
+        this.postImage(responseTask);
+         this.modalService.closeModal();
       });
   }
 
@@ -97,11 +105,14 @@ export class ModalComponent implements OnInit, OnDestroy {
         priority: this.priorityControl.value,
         status: this.statusControl.value,
         description: this.descriptionControl.value,
+        image: this.imageSrc
       })
+      
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
         this.changesService.refreshData = true;
-        this.modalService.closeModal();
+        this.postImage(this.taskToEdit);
+         this.modalService.closeModal();
       });
   }
 
@@ -134,6 +145,35 @@ export class ModalComponent implements OnInit, OnDestroy {
       ? `../../../assets/green${side}.png`
       : '';
   }
+
+  selectedFile!: File;
+  base64String!: string;
+  imageSrc!: any;
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    this.convertToBase64();
+    console.log(this.selectedFile, ' this.selectedFile');
+  }
+
+  convertToBase64() {
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = (e: any) => {
+        this.base64String = reader.result as string;
+        this.imageSrc = this.sanitizer.bypassSecurityTrustResourceUrl(
+          e.target.result
+        );
+        console.log('this.base64String', this.base64String); // You can access the base64 string here
+      };
+      reader.readAsDataURL(this.selectedFile);
+    }
+  }
+
+  postImage(task: ITask) {
+    this.imageUploadService.postImage(task, this.base64String).subscribe();
+  }
+
 
   //prevent event bubbling - when user clicks backdrop modal closes, when user clicks on the modal itself, modal is still open
   onModalClick(event: MouseEvent) {

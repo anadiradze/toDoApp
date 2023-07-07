@@ -11,6 +11,7 @@ import { HttpServiceService } from 'src/app/shared/services/http-service.service
 import { ChangesServiceService } from 'src/app/shared/services/changes-service.service';
 import { ModalServiceService } from '../../services/modal-service.service';
 import { Subject, takeUntil } from 'rxjs';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-list-item',

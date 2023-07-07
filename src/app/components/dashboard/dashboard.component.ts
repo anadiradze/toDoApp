@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     private modalService: ModalServiceService,
-    private httpService: HttpServiceService,
     private changesService: ChangesServiceService
   ) {}
   ngOnDestroy(): void {
