@@ -6,7 +6,7 @@ export interface ITask {
   status: TaskItems;
   priority: number;
   description: string;
-  image?: SafeUrl
+  images?: string[]
 }
 
 export enum TaskItems {

@@ -83,10 +83,10 @@ button:last-child {
 input.error + .char-control {
   color: red;
 }
-.icon{
+.icon {
   width: 60px;
   margin: 20px;
 }
-.attachedImg{
+.attachedImg {
   max-width: 500px;
 }

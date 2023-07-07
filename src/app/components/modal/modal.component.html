@@ -61,11 +61,19 @@
           {{ status }}
         </label>
       </div>
-
       <input type="file" (change)="onFileSelected($event)" accept=".jpg,.png" />
-      <div *ngIf="imageSrc" >
-        <img [src]="imageSrc" alt="Base64 Image"class="attachedImg" />
+      <div *ngIf="imageSrc">
+        <img [src]="imageSrc" alt="Base64 Image" class="attachedImg" />
       </div>
+      <div *ngIf="images?.length">
+        <img
+          *ngFor="let image of images"
+          [src]="image"
+          alt="Base64 Image"
+          class="attachedImg"
+        />
+      </div>
+
       <div class="modal-buttons">
         <button *ngIf="!editModeisOn" (click)="addTask()">
           {{ "Add Task" }}

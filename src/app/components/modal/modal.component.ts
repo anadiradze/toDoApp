@@ -35,10 +35,11 @@ export class ModalComponent implements OnInit, OnDestroy {
   inProgressStatusEnum = this.changesService.inProgressStatusEnum;
   doneStatusEnum = this.changesService.doneStatusEnum;
 
-//attach image
+  //attach image
   selectedFile!: File;
   base64String!: string;
   imageSrc!: SafeUrl | undefined;
+  images!: string[] | undefined;
 
   constructor(
     private modalService: ModalServiceService,
@@ -54,7 +55,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initModalForm();
     if (this.editModeisOn) {
-      this.imageSrc = this.taskToEdit.image;
+      this.images = this.taskToEdit.images;
     }
   }
 
@@ -110,7 +111,7 @@ export class ModalComponent implements OnInit, OnDestroy {
         priority: this.priorityControl.value,
         status: this.statusControl.value,
         description: this.descriptionControl.value,
-        image: this.imageSrc,
+        images: [...(this.taskToEdit.images ? this.taskToEdit.images : [])],
       })
 
       .pipe(takeUntil(this.destroy$))
@@ -150,8 +151,6 @@ export class ModalComponent implements OnInit, OnDestroy {
       ? `../../../assets/green${side}.png`
       : '';
   }
-
-  
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];

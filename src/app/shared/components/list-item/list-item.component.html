@@ -18,8 +18,10 @@
           {{ taskItem.description }}
         </p>
         <p>Priority - {{ taskItem.priority }}</p>
-        <div *ngIf="taskItem.image">
-          <img class="attachedImg" [src]="taskItem.image" alt="img" />
+        <p *ngIf="taskItem.images">Attachments - {{ taskItem.images.length }}</p>
+
+        <div *ngFor="let image of taskItem.images">
+          <img *ngIf="image" class="attachedImg" [src]="image" alt="img" />
         </div>
       </div>
       <img

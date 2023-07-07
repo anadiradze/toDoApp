@@ -12,6 +12,7 @@ import { ChangesServiceService } from 'src/app/shared/services/changes-service.s
 import { ModalServiceService } from '../../services/modal-service.service';
 import { Subject, takeUntil } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
+import { ImageUploadServiceService } from '../../services/image-upload-service.service';
 
 @Component({
   selector: 'app-list-item',
@@ -27,17 +28,18 @@ export class ListItemComponent implements OnInit, OnDestroy {
   constructor(
     private httpService: HttpServiceService,
     private changesService: ChangesServiceService,
-    private modalService: ModalServiceService
+    private modalService: ModalServiceService,
   ) {}
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
   @Input() taskItems: ITask[] | null = [];
   @Input() taskItem!: ITask;
-
   newStatusEnum = this.changesService.newStatusEnum;
   inProgressStatusEnum = this.changesService.inProgressStatusEnum;
   doneStatusEnum = this.changesService.doneStatusEnum;
