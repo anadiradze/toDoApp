@@ -8,7 +8,6 @@ import {
   takeUntil,
 } from 'rxjs';
 import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
-import { HttpServiceService } from 'src/app/shared/services/http-service.service';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
 import { ChangesServiceService } from 'src/app/shared/services/changes-service.service';
 import {
@@ -100,8 +99,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex
       );
-
-      this.sameArrayPriorityChange(draggedItem, targetPriority);
+      if (targetPriority < 10) {
+        this.sameArrayPriorityChange(draggedItem, targetPriority);
+      } else {
+        this.sameArrayPriorityChange(draggedItem, targetPriority - 1);
+      }
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -109,11 +111,19 @@ export class DashboardComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex
       );
-      this.otherArrayPriorityChange(
-        event,
-        anotherArrDraggedItem,
-        anotherArrTargetPriority
-      );
+      if (targetPriority < 10) {
+        this.otherArrayPriorityChange(
+          event,
+          anotherArrDraggedItem,
+          anotherArrTargetPriority
+        );
+      } else {
+        this.otherArrayPriorityChange(
+          event,
+          anotherArrDraggedItem,
+          anotherArrTargetPriority - 1
+        );
+      }
     }
   }
 

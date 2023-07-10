@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { ITask } from '../models/http-model.model';
 @Injectable({
@@ -19,7 +18,4 @@ export class ImageUploadServiceService {
     return this.http.put(url, updatedTask);
   }
 
-  log(){
-    console.log(this.images,'this.images from service')
-  }
 }
