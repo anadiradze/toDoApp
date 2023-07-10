@@ -6,8 +6,8 @@ import { environment } from 'src/app/environments/environment.prod';
 export class LoggerServiceService {
   constructor() {}
   disableLogsinProd() {
-    if (environment.production) {
+  /*   if (environment.production) {
       console.log = function (): void {};
-    }
+    } */
   }
 }
