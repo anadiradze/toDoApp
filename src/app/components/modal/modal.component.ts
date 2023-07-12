@@ -20,7 +20,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   @Input() taskToEdit!: ITask;
   editModeisOn = this.modalService.editModeisOn;
 
-  maxNumOfCharacters: number = 70;
+  maxNumOfCharacters: number = 20;
 
   //modalService
   index: number = this.modalService.index;

@@ -15,7 +15,7 @@
   position: relative;
   background-color: #fff;
   padding: 20px;
-  width: 500px;
+  width: 600px;
   border-radius: 12px;
 }
 
@@ -24,7 +24,7 @@ h2 {
   color: #fff;
 }
 
-input {
+.textInp {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
@@ -36,23 +36,7 @@ input {
 .modal-buttons {
   display: flex;
   justify-content: flex-end;
-}
-
-button {
-  padding: 10px 20px;
-  margin-left: 10px;
-  border-radius: 12px;
-  border: none;
-}
-
-button:first-child {
-  background: #0073ea;
-  color: #fff;
-}
-
-button:last-child {
-  background-color: #fff;
-  color: #0073ea;
+  gap: 10px;
 }
 .priorityForm {
   display: flex;
@@ -89,4 +73,36 @@ input.error + .char-control {
 }
 .attachedImg {
   max-width: 500px;
+}
+
+input[type="file"] {
+  width: 100%;
+  margin: 15px 0px;
+}
+input[type="file"]::-webkit-file-upload-button,
+.modalBtn {
+  width: 100%;
+  background-color: #ea4c89;
+  border-radius: 8px;
+  border-style: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  padding: 10px 16px;
+  text-align: center;
+  transition: color 100ms;
+}
+.modalBtn {
+  background: #0073ea;
+  color: #fff;
+}
+input[type="file"]::-webkit-file-upload-button:hover,
+input[type="file"]::-webkit-file-upload-button:focus {
+  background-color: #f082ac;
+}
+.modalBtn:hover,
+.modalBtn:focus {
+  background-color: #579be3;
 }
