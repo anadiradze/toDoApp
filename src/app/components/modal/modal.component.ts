@@ -82,7 +82,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       description: this.modalForm.get('description')?.value,
     };
     this.httpService
-      .addTask(task)
+      .add(task)
       .pipe(takeUntil(this.destroy$))
       .subscribe((responseTask) => {
         if (this.selectedFile) {
@@ -96,8 +96,8 @@ export class ModalComponent implements OnInit, OnDestroy {
 
   // update task when user edits the task
   updateTask() {
-    this.changesService
-      .UpdateTask({
+    this.httpService
+      .put({
         ...this.taskToEdit,
         title: this.modalForm.get('name')?.value,
         priority: this.modalForm.get('priority')?.value,

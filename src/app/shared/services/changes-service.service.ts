@@ -35,19 +35,14 @@ export class ChangesServiceService {
       })
     );
   }
-  UpdateTask(task: ITask): Observable<any> {
-    const url = `${this.url}/${task.id}`;
-    return this.http.put(url, task);
-  }
+ 
   changeStatus(task: ITask, newStatus: TaskItems | string): Observable<any> {
-    const url = `${this.url}/${task.id}`;
-    const updatedTask = { ...task, status: newStatus };
-    return this.http.put(url, updatedTask);
+    const updatedTask : ITask = { ...task, status: newStatus };
+    return this.httpService.put(updatedTask);
   }
   changePriority(task: ITask, newPriority: number): Observable<any> {
-    const url = `${this.url}/${task.id}`;
     const updatedTask = { ...task, priority: newPriority };
-    return this.http.put(url, updatedTask);
+    return this.httpService.put(updatedTask);
   }
   
   
@@ -56,8 +51,5 @@ export class ChangesServiceService {
   inProgressStatusEnum: TaskItems = TaskItems.InProgress;
   doneStatusEnum: TaskItems = TaskItems.Done;
 
-  yellow: string = 'rgb(240, 175, 83)';
-  red: string = 'rgb(226, 68, 92)';
-  green: string = 'rgb(0, 200, 117)';
-  grey: string = 'rgb(196, 196, 196)';
+
 }

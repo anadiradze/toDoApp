@@ -44,7 +44,7 @@ export class ListItemComponent implements OnInit, OnDestroy {
 
   deleteTask(id: number) {
     this.httpService
-      .deleteTask(id)
+      .delete(id)
       .pipe(takeUntil(this.destroy$))
       .subscribe((res) => {
         this.changesService.refreshData = true;

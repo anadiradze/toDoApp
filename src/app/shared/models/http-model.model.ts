@@ -2,7 +2,7 @@
 export interface ITask {
   id?: number;
   title: string;
-  status: TaskItems;
+  status: TaskItems | string;
   priority: number;
   description: string;
   images?: string[]
