@@ -57,6 +57,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     if (this.editModeisOn) {
       this.images = this.taskToEdit.images;
     }
+    console.log(this.modalForm.value, 'a');
   }
 
   initModalForm() {
@@ -68,33 +69,17 @@ export class ModalComponent implements OnInit, OnDestroy {
       priority: new FormControl(this.taskToEdit?.priority),
       status: new FormControl(this.taskToEdit?.status),
       description: new FormControl(this.taskToEdit?.description),
-     // image: new FormControl(this.imageSrc),
+      image: new FormControl(this.taskToEdit.images),
     });
-  }
-
-  get nameControl() {
-    return this.modalForm.get('name') as FormControl;
-  }
-  get priorityControl() {
-    return this.modalForm.get('priority') as FormControl;
-  }
-  get statusControl() {
-    return this.modalForm.get('status') as FormControl;
-  }
-  get descriptionControl() {
-    return this.modalForm.get('description') as FormControl;
-  }
-  get imageControl() {
-    return this.modalForm.get('image') as FormControl;
   }
 
   // add task when user adds the task
   addTask() {
     const task: ITask = {
-      title: this.nameControl.value,
-      status: this.statusControl.value,
-      priority: this.priorityControl.value,
-      description: this.descriptionControl.value,
+      title: this.modalForm.get('name')?.value,
+      priority: this.modalForm.get('priority')?.value,
+      status: this.modalForm.get('status')?.value,
+      description: this.modalForm.get('description')?.value,
     };
     this.httpService
       .addTask(task)
@@ -103,6 +88,7 @@ export class ModalComponent implements OnInit, OnDestroy {
         if (this.selectedFile) {
           this.postImage(responseTask);
         }
+        console.log(this.modalForm.controls, 'this');
         this.changesService.refreshData = true;
         this.modalService.closeModal();
       });
@@ -113,11 +99,11 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.changesService
       .UpdateTask({
         ...this.taskToEdit,
-        title: this.nameControl.value,
-        priority: this.priorityControl.value,
-        status: this.statusControl.value,
-        description: this.descriptionControl.value,
-        images: [...(this.taskToEdit.images ? this.taskToEdit.images : [])],
+        title: this.modalForm.get('name')?.value,
+        priority: this.modalForm.get('priority')?.value,
+        status: this.modalForm.get('status')?.value,
+        description: this.modalForm.get('description')?.value,
+        //images: [...(this.taskToEdit.images ? this.taskToEdit.images : [])],
       })
 
       .pipe(takeUntil(this.destroy$))

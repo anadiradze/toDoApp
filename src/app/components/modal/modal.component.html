@@ -22,18 +22,18 @@
 
     <div [formGroup]="modalForm" class="title-input">
       <input
-        [ngClass]="nameControl.value.length > maxNumOfCharacters ? 'error' : ''"
+        [ngClass]=" modalForm.get('name')?.value.length > maxNumOfCharacters ? 'error' : ''"
         type="text"
         placeholder="Enter task name"
-        [formControl]="nameControl"
-      />
+        formControlName="name"
+        />
       <span class="char-control">
-        {{ maxNumOfCharacters - nameControl.value.length }}
+        {{ maxNumOfCharacters - modalForm.get('name')?.value.length }}
       </span>
       <input
         type="text"
         placeholder="Enter the description"
-        [formControl]="descriptionControl"
+        formControlName="description"
       />
       <div class="priorityForm">
         <p>Priorities:</p>
@@ -41,7 +41,7 @@
           <input
             name="priority"
             type="radio"
-            [formControl]="priorityControl"
+            formControlName="priority"
             [value]="priority"
             class="prioritiesInput"
           />
@@ -54,20 +54,23 @@
           <input
             name="status"
             type="radio"
-            [formControl]="statusControl"
+            formControlName="status"
             [value]="status"
             class="prioritiesInput"
           />
           {{ status | titlecase }}
         </label>
       </div>
-      
+
+      <!-- Show image immediately -->
       <input type="file" (change)="onFileSelected($event)" accept=".jpg,.png" />
       <div *ngIf="imageSrc">
         <img [src]="imageSrc" alt="Base64 Image" class="attachedImg" />
       </div>
 
-      <div *ngFor="let image of images">
+      <!-- Show existing images in edit mode -->
+
+      <div *ngFor="let image of modalForm.get('image')?.value">
         <ng-container *ngIf="image">
           <img [src]="image" alt="Base64 Image" class="attachedImg" />
         </ng-container>
