@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ITask } from '../models/http-model.model';
+import { environment } from 'src/app/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { ITask } from '../models/http-model.model';
 export class HttpServiceService {
   constructor(private http: HttpClient) {}
 
-  url = 'http://localhost:3004/tasks';
+  url = environment.baseUrl;
 
   getTasks(): Observable<ITask[]> {
     return this.http.get<ITask[]>(this.url);

@@ -68,6 +68,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       priority: new FormControl(this.taskToEdit?.priority),
       status: new FormControl(this.taskToEdit?.status),
       description: new FormControl(this.taskToEdit?.description),
+     // image: new FormControl(this.imageSrc),
     });
   }
 
@@ -83,6 +84,9 @@ export class ModalComponent implements OnInit, OnDestroy {
   get descriptionControl() {
     return this.modalForm.get('description') as FormControl;
   }
+  get imageControl() {
+    return this.modalForm.get('image') as FormControl;
+  }
 
   // add task when user adds the task
   addTask() {
@@ -96,8 +100,10 @@ export class ModalComponent implements OnInit, OnDestroy {
       .addTask(task)
       .pipe(takeUntil(this.destroy$))
       .subscribe((responseTask) => {
+        if (this.selectedFile) {
+          this.postImage(responseTask);
+        }
         this.changesService.refreshData = true;
-        this.postImage(responseTask);
         this.modalService.closeModal();
       });
   }
@@ -116,14 +122,16 @@ export class ModalComponent implements OnInit, OnDestroy {
 
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
+        if (this.selectedFile) {
+          this.postImage(this.taskToEdit);
+        }
         this.changesService.refreshData = true;
-        this.postImage(this.taskToEdit);
         this.modalService.closeModal();
       });
   }
 
   // get to the next/previous task in edit mode
-  previousTask(event: Event) {
+  nextTask(event: Event) {
     if (this.index + 1 === this.length) {
       this.index = -1;
     }
@@ -132,7 +140,7 @@ export class ModalComponent implements OnInit, OnDestroy {
     event.stopPropagation();
   }
 
-  nextTask(event: Event) {
+  previousTask(event: Event) {
     if (this.index - 1 < 0) {
       this.index = this.length;
     }

@@ -86,12 +86,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   // drop logic, when user drops task to another place priority changes according to its below/upper task priority.
   drop(event: CdkDragDrop<ITask[]>) {
     const draggedItem = event.container.data[event.previousIndex];
-    const targetPriority =
-      event.container.data[event.currentIndex].priority + 1;
-    const anotherArrDraggedItem =
-      event.previousContainer.data[event.previousIndex];
-    const anotherArrTargetPriority =
-      event.container.data[event.currentIndex].priority + 1;
+    const targetPriority = event.container.data[event.currentIndex].priority + 1;
+    const anotherArrDraggedItem = event.previousContainer.data[event.previousIndex];
+    const anotherArrTargetPriority = event.container.data[event.currentIndex].priority + 1;
 
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -99,11 +96,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex
       );
-      if (targetPriority < 10) {
-        this.sameArrayPriorityChange(draggedItem, targetPriority);
-      } else {
-        this.sameArrayPriorityChange(draggedItem, targetPriority - 1);
-      }
+      targetPriority < 10
+        ? this.sameArrayPriorityChange(draggedItem, targetPriority)
+        : this.sameArrayPriorityChange(draggedItem, targetPriority - 1);
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -111,19 +106,17 @@ export class DashboardComponent implements OnInit, OnDestroy {
         event.previousIndex,
         event.currentIndex
       );
-      if (targetPriority < 10) {
-        this.otherArrayPriorityChange(
-          event,
-          anotherArrDraggedItem,
-          anotherArrTargetPriority
-        );
-      } else {
-        this.otherArrayPriorityChange(
-          event,
-          anotherArrDraggedItem,
-          anotherArrTargetPriority - 1
-        );
-      }
+      targetPriority < 10
+        ? this.otherArrayPriorityChange(
+            event,
+            anotherArrDraggedItem,
+            anotherArrTargetPriority
+          )
+        : this.otherArrayPriorityChange(
+            event,
+            anotherArrDraggedItem,
+            anotherArrTargetPriority - 1
+          );
     }
   }
 

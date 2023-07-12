@@ -9,6 +9,6 @@ import { LoggerServiceService } from './shared/services/logger-service.service';
 export class AppComponent {
   title = 'toDoApp';
   constructor(private loggerService: LoggerServiceService) {
-    this.loggerService.disableLogsinProd();
+    //this.loggerService.disableLogsinProd();
   }
 }

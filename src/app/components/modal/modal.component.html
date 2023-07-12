@@ -4,7 +4,7 @@
     class="icon"
     [src]="getIconSource(taskToEdit, 'Left')"
     alt="icon"
-    (click)="nextTask($event)"
+    (click)="previousTask($event)"
   />
 
   <div class="modal" (click)="onModalClick($event)">
@@ -58,20 +58,19 @@
             [value]="status"
             class="prioritiesInput"
           />
-          {{ status }}
+          {{ status | titlecase }}
         </label>
       </div>
+      
       <input type="file" (change)="onFileSelected($event)" accept=".jpg,.png" />
       <div *ngIf="imageSrc">
         <img [src]="imageSrc" alt="Base64 Image" class="attachedImg" />
       </div>
-      <div *ngIf="images?.length">
-        <img
-          *ngFor="let image of images"
-          [src]="image"
-          alt="Base64 Image"
-          class="attachedImg"
-        />
+
+      <div *ngFor="let image of images">
+        <ng-container *ngIf="image">
+          <img [src]="image" alt="Base64 Image" class="attachedImg" />
+        </ng-container>
       </div>
 
       <div class="modal-buttons">
@@ -94,6 +93,6 @@
     class="icon"
     [src]="getIconSource(taskToEdit, 'Right')"
     alt="icon"
-    (click)="previousTask($event)"
+    (click)="nextTask($event)"
   />
 </div>
