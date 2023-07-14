@@ -15,6 +15,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { FilterTasksService } from 'src/app/shared/services/filter-tasks.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +27,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
   constructor(
     private modalService: ModalServiceService,
-    private changesService: ChangesServiceService
+    private changesService: ChangesServiceService,
+    private filterTasks: FilterTasksService
   ) {}
   ngOnDestroy(): void {
     this.destroy$.next(true);
@@ -45,38 +47,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   // get all the tasks when app starts
   ngOnInit(): void {
-    this.getTasks();
+    this.filterTasks.getTasks();
+    this.initFilteredTasks();
   }
 
-  getTasks() {
-    this.allTasks$ = this.changesService.isDataChanged$.pipe(
-      switchMap((res) => {
-        return this.changesService.getTasks();
-      })
-    );
-
-    // filter the allTasks observable to implement async pipes according to task statuses.
-    this.newTasks$ = this.allTasks$.pipe(
-      map((AllTasksFromService: ITask[]) => {
-        return AllTasksFromService.filter(
-          (task) => task.status === TaskItems.New
-        );
-      })
-    );
-    this.inProgressTasks$ = this.allTasks$.pipe(
-      map((AllTasksFromService: ITask[]) => {
-        return AllTasksFromService.filter(
-          (task) => task.status === TaskItems.InProgress
-        );
-      })
-    );
-    this.doneTasks$ = this.allTasks$.pipe(
-      map((AllTasksFromService: ITask[]) => {
-        return AllTasksFromService.filter(
-          (task) => task.status === TaskItems.Done
-        );
-      })
-    );
+  initFilteredTasks(){
+    this.allTasks$= this.filterTasks.allTasks$;
+    this.newTasks$= this.filterTasks.newTasks$
+    this.inProgressTasks$ = this.filterTasks.inProgressTasks$
+    this.doneTasks$= this.filterTasks.doneTasks$
   }
 
   // modal pops-up conditionally according to isModalServiceVisible is true or false.
