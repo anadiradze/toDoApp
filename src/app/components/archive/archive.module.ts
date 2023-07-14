@@ -22,19 +22,16 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ArchiveComponent } from './archive.component';
 import { BoardListComponent } from './board-list/board-list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes = [
   {
     path: '',
     component: ArchiveComponent,
   },
-  {
-    path: 'boards',
-    component: BoardListComponent,
-  },
 ];
 @NgModule({
   declarations: [ArchiveComponent, BoardListComponent],
-  imports: [CommonModule, RouterModule.forChild(routes)],
+  imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
 })
 export class ArchiveModule {}

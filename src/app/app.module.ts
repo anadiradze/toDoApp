@@ -25,7 +25,7 @@ import { ArchiveModule } from './components/archive/archive.module';
     DragDropModule,
     MatTooltipModule,
     MatIconModule,
-    ArchiveModule
+    ArchiveModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

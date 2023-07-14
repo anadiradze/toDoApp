@@ -1,3 +1,9 @@
-<app-board-list>
-    
-</app-board-list>
+<ng-container *ngFor="let archivedTask$ of archivedTasks">
+  <div class="carousel">
+    <app-board-list
+      *ngFor="let doneTask of archivedTask$ | async as doneTasks"
+      [doneTask]="doneTask"
+    >
+    </app-board-list>
+  </div>
+</ng-container>

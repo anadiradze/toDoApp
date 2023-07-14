@@ -1,13 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  Observable,
-  Subject,
-  concatMap,
-  map,
-  switchMap,
-  takeUntil,
-} from 'rxjs';
-import { TaskItems, ITask } from 'src/app/shared/models/http-model.model';
+import { Observable, Subject, concatMap, takeUntil } from 'rxjs';
+import { ITask } from 'src/app/shared/models/http-model.model';
 import { ModalServiceService } from 'src/app/shared/services/modal-service.service';
 import { ChangesServiceService } from 'src/app/shared/services/changes-service.service';
 import {
@@ -51,11 +44,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.initFilteredTasks();
   }
 
-  initFilteredTasks(){
-    this.allTasks$= this.filterTasks.allTasks$;
-    this.newTasks$= this.filterTasks.newTasks$
-    this.inProgressTasks$ = this.filterTasks.inProgressTasks$
-    this.doneTasks$= this.filterTasks.doneTasks$
+  initFilteredTasks() {
+    this.allTasks$ = this.filterTasks.allTasks$;
+    this.newTasks$ = this.filterTasks.newTasks$;
+    this.inProgressTasks$ = this.filterTasks.inProgressTasks$;
+    this.doneTasks$ = this.filterTasks.doneTasks$;
   }
 
   // modal pops-up conditionally according to isModalServiceVisible is true or false.
