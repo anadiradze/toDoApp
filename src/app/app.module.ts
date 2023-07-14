@@ -10,6 +10,8 @@ import { SharedModule } from './shared/shared.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
+import { ArchiveModule } from './components/archive/archive.module';
+
 
 @NgModule({
   declarations: [AppComponent, DashboardComponent, ModalComponent],
@@ -22,7 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
     SharedModule,
     DragDropModule,
     MatTooltipModule,
-    MatIconModule
+    MatIconModule,
+    ArchiveModule
   ],
   providers: [],
   bootstrap: [AppComponent],

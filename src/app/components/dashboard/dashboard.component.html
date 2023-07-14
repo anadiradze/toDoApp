@@ -4,6 +4,7 @@
     <div class="inputAndButton">
       <input type="text" class="searchInput" />
       <button class="newTask" (click)="openModalOnAddTask()">+ New Task</button>
+      <button class="newTask" routerLink="/archive">Archive</button>
     </div>
 
     <app-modal *ngIf="isModalServiceVisible()" [taskToEdit]="task"></app-modal>
@@ -19,10 +20,10 @@
         (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
-          *ngFor="let taskItem of newTasks let i = index"
+          *ngFor="let taskItem of newTasks; let i = index"
           [taskItem]="taskItem"
           [newTasks]="newTasks"
-          [index] ="i"
+          [index]="i"
           (moveTaskToDashboard)="receiveTaskInDashboard($event)"
           cdkDrag
         ></app-list-item>
@@ -38,10 +39,10 @@
         (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
-          *ngFor="let taskItem of inProgressTasks let i = index"
+          *ngFor="let taskItem of inProgressTasks; let i = index"
           [taskItem]="taskItem"
           [newTasks]="inProgressTasks"
-          [index] ="i"
+          [index]="i"
           (moveTaskToDashboard)="receiveTaskInDashboard($event)"
           cdkDrag
         ></app-list-item>
@@ -57,10 +58,10 @@
         (cdkDropListDropped)="drop($event)"
       >
         <app-list-item
-          *ngFor="let taskItem of doneTasks let i = index"
+          *ngFor="let taskItem of doneTasks; let i = index"
           [taskItem]="taskItem"
           [newTasks]="doneTasks"
-          [index] ="i"
+          [index]="i"
           (moveTaskToDashboard)="receiveTaskInDashboard($event)"
           cdkDrag
         ></app-list-item>
